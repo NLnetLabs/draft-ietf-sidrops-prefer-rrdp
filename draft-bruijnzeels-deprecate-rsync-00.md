@@ -141,7 +141,7 @@ removed before possible publication.]
 | afrinic                   | no                |
 | apnic                     | yes               |
 | arin                      | under development |
-| lacnic                    | no                |
+| lacnic                    | planned           |
 | ripe ncc                  | yes               |
 | rpki.net                  | yes(1)            |
 | krill                     | yes(2)            |
