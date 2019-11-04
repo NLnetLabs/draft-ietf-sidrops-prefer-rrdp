@@ -216,8 +216,8 @@ Internet-Draft        RPKI Repository Requirements         November 2019
              |           krill           |       yes(2)      |
              +---------------------------+-------------------+
 
-
-
+   (1) in use at various National Internet Registries, as well as other
+   resource holders under RIRs.  (2) Software under development.
 
 
 
@@ -225,10 +225,6 @@ Bruijnzeels                Expires May 7, 2020                  [Page 4]
 
 Internet-Draft        RPKI Repository Requirements         November 2019
 
-
-   (1) in use at various National Internet Registries, as well as other
-   resource holders under RIRs.  (2) Software under development, to be
-   deployed by NIRs and/or other resource holders under RIRs.
 
 5.2.  RRDP support in Relying Party software
 
@@ -271,6 +267,10 @@ Internet-Draft        RPKI Repository Requirements         November 2019
               Scheme", RFC 5781, DOI 10.17487/RFC5781, February 2010,
               <https://www.rfc-editor.org/info/rfc5781>.
 
+   [RFC6481]  Huston, G., Loomans, R., and G. Michaelson, "A Profile for
+              Resource Certificate Repository Structure", RFC 6481,
+              DOI 10.17487/RFC6481, February 2012,
+              <https://www.rfc-editor.org/info/rfc6481>.
 
 
 
@@ -281,11 +281,6 @@ Bruijnzeels                Expires May 7, 2020                  [Page 5]
 
 Internet-Draft        RPKI Repository Requirements         November 2019
 
-
-   [RFC6481]  Huston, G., Loomans, R., and G. Michaelson, "A Profile for
-              Resource Certificate Repository Structure", RFC 6481,
-              DOI 10.17487/RFC6481, February 2012,
-              <https://www.rfc-editor.org/info/rfc6481>.
 
    [RFC6486]  Austein, R., Huston, G., Kent, S., and M. Lepinski,
               "Manifests for the Resource Public Key Infrastructure
@@ -319,6 +314,11 @@ Author's Address
 
    Email: tim@nlnetlabs.nl
    URI:   https://www.nlnetlabs.nl/
+
+
+
+
+
 
 
 

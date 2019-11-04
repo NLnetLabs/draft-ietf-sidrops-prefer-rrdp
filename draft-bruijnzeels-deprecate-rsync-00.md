@@ -148,8 +148,7 @@ removed before possible publication.]
 
 (1) in use at various National Internet Registries, as well as other resource
     holders under RIRs.
-(2) Software under development, to be deployed by NIRs and/or other resource
-    holders under RIRs.
+(2) Software under development.
 
 ## RRDP support in Relying Party software
 
