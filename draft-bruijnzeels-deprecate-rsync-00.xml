@@ -62,22 +62,23 @@ this document are to be interpreted as described in BCP 14 <xref target="RFC2119
 </section>
 
 <section anchor="motivation" title="Motivation">
-<t>The RPKI Repository Delta Protocol <xref target="RFC8182"/> (RRDP) was designed to provide an
-alternative repository access protocol in addition to the rsync repository
-structure outlined in <xref target="RFC6481"/>. In order to facilitate incremental deployment
-RRDP has been deployed as an additional optional protocol, while rsync was still
-mandatory to implement.
+<t>The Resource Public Key Infrastructure (RPKI) <xref target="RFC6480"/> as originally defined
+uses rsync as its distribution protocol, as outlined in <xref target="RFC6481"/>. Later, the
+RPKI Repository Delta Protocol (RRDP) <xref target="RFC8182"/> was designed to provide an
+alternative. In order to facilitate incremental deployment RRDP has been
+deployed as an additional optional protocol, while rsync was still mandatory to
+implement.
 </t>
 <t>RPKI Repository operators are still required to provide 24/7 up-time to their
-rsync Infrastructure, as long as the requirement to support rsync stands. Thus,
+rsync infrastructure, as long as the requirement to support rsync stands. Thus,
 the benefit that they get from supporting RRDP, which enables the use of content
 delivery networks (CDNs) for this purpose, is limited.
 </t>
 <t>And as long as not all RPKI Repositories support RRDP, Relying Party software is
-still required to support rsync, either by reverse engineering the rsync client
-protocol, or by relying on calling a system installed rsync binary. The latter
-is inefficient, and has issues with regards to versioning of the rsync binary,
-as well as reporting errors reliably.
+still required to support rsync. Because there is a lack of rsync client
+libraries, this is typically implemented by calling a system installed rsync
+binary. This is inefficient, and has issues with regards to versioning of the
+rsync binary, as well as reporting errors reliably.
 </t>
 <t>This document requires that all RPKI repositories and all Relying Parties support
 RRDP. It also stipulates that these parties are no longer required to support
@@ -214,6 +215,7 @@ removed before possible publication.]
 <references title="Normative References">
 <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
 <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5781.xml"?>
+<?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6480.xml"?>
 <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6481.xml"?>
 <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6486.xml"?>
 <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6487.xml"?>

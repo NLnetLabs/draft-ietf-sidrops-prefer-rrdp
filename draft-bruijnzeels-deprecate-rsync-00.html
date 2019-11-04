@@ -484,9 +484,9 @@
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#motivation" id="motivation">Motivation</a>
 </h1>
-<p id="rfc.section.2.p.1">The RPKI Repository Delta Protocol <a href="#RFC8182" class="xref">[RFC8182]</a> (RRDP) was designed to provide an alternative repository access protocol in addition to the rsync repository structure outlined in <a href="#RFC6481" class="xref">[RFC6481]</a>. In order to facilitate incremental deployment RRDP has been deployed as an additional optional protocol, while rsync was still mandatory to implement.  </p>
-<p id="rfc.section.2.p.2">RPKI Repository operators are still required to provide 24/7 up-time to their rsync Infrastructure, as long as the requirement to support rsync stands. Thus, the benefit that they get from supporting RRDP, which enables the use of content delivery networks (CDNs) for this purpose, is limited.  </p>
-<p id="rfc.section.2.p.3">And as long as not all RPKI Repositories support RRDP, Relying Party software is still required to support rsync, either by reverse engineering the rsync client protocol, or by relying on calling a system installed rsync binary. The latter is inefficient, and has issues with regards to versioning of the rsync binary, as well as reporting errors reliably.  </p>
+<p id="rfc.section.2.p.1">The Resource Public Key Infrastructure (RPKI) <a href="#RFC6480" class="xref">[RFC6480]</a> as originally defined uses rsync as its distribution protocol, as outlined in <a href="#RFC6481" class="xref">[RFC6481]</a>. Later, the RPKI Repository Delta Protocol (RRDP) <a href="#RFC8182" class="xref">[RFC8182]</a> was designed to provide an alternative. In order to facilitate incremental deployment RRDP has been deployed as an additional optional protocol, while rsync was still mandatory to implement.  </p>
+<p id="rfc.section.2.p.2">RPKI Repository operators are still required to provide 24/7 up-time to their rsync infrastructure, as long as the requirement to support rsync stands. Thus, the benefit that they get from supporting RRDP, which enables the use of content delivery networks (CDNs) for this purpose, is limited.  </p>
+<p id="rfc.section.2.p.3">And as long as not all RPKI Repositories support RRDP, Relying Party software is still required to support rsync. Because there is a lack of rsync client libraries, this is typically implemented by calling a system installed rsync binary. This is inefficient, and has issues with regards to versioning of the rsync binary, as well as reporting errors reliably.  </p>
 <p id="rfc.section.2.p.4">This document requires that all RPKI repositories and all Relying Parties support RRDP. It also stipulates that these parties are no longer required to support rsync. This way all parties are freed of direct operational dependencies on rsync.  </p>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#rsync-uris-as-object-identifiers" id="rsync-uris-as-object-identifiers">Rsync URIs as object identifiers</a>
@@ -630,6 +630,11 @@
 <td class="reference"><b id="RFC5781">[RFC5781]</b></td>
 <td class="top">
 <a>Weiler, S.</a>, <a>Ward, D.</a> and <a>R. Housley</a>, "<a href="https://tools.ietf.org/html/rfc5781">The rsync URI Scheme</a>", RFC 5781, DOI 10.17487/RFC5781, February 2010.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6480">[RFC6480]</b></td>
+<td class="top">
+<a>Lepinski, M.</a> and <a>S. Kent</a>, "<a href="https://tools.ietf.org/html/rfc6480">An Infrastructure to Support Secure Internet Routing</a>", RFC 6480, DOI 10.17487/RFC6480, February 2012.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC6481">[RFC6481]</b></td>

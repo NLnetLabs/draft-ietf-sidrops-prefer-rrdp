@@ -49,22 +49,23 @@ this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC817
 
 # Motivation
 
-The RPKI Repository Delta Protocol [@!RFC8182] (RRDP) was designed to provide an
-alternative repository access protocol in addition to the rsync repository
-structure outlined in [@!RFC6481]. In order to facilitate incremental deployment
-RRDP has been deployed as an additional optional protocol, while rsync was still
-mandatory to implement.
+The Resource Public Key Infrastructure (RPKI) [@!RFC6480] as originally defined
+uses rsync as its distribution protocol, as outlined in [@!RFC6481]. Later, the
+RPKI Repository Delta Protocol (RRDP) [@!RFC8182] was designed to provide an
+alternative. In order to facilitate incremental deployment RRDP has been
+deployed as an additional optional protocol, while rsync was still mandatory to
+implement.
 
 RPKI Repository operators are still required to provide 24/7 up-time to their
-rsync Infrastructure, as long as the requirement to support rsync stands. Thus,
+rsync infrastructure, as long as the requirement to support rsync stands. Thus,
 the benefit that they get from supporting RRDP, which enables the use of content
 delivery networks (CDNs) for this purpose, is limited.
 
 And as long as not all RPKI Repositories support RRDP, Relying Party software is
-still required to support rsync, either by reverse engineering the rsync client
-protocol, or by relying on calling a system installed rsync binary. The latter
-is inefficient, and has issues with regards to versioning of the rsync binary,
-as well as reporting errors reliably.
+still required to support rsync. Because there is a lack of rsync client
+libraries, this is typically implemented by calling a system installed rsync
+binary. This is inefficient, and has issues with regards to versioning of the
+rsync binary, as well as reporting errors reliably.
 
 This document requires that all RPKI repositories and all Relying Parties support
 RRDP. It also stipulates that these parties are no longer required to support

@@ -93,19 +93,19 @@ Table of Contents
 
 2.  Motivation
 
-   The RPKI Repository Delta Protocol [RFC8182] (RRDP) was designed to
-   provide an alternative repository access protocol in addition to the
-   rsync repository structure outlined in [RFC6481].  In order to
+   The Resource Public Key Infrastructure (RPKI) [RFC6480] as originally
+   defined uses rsync as its distribution protocol, as outlined in
+   [RFC6481].  Later, the RPKI Repository Delta Protocol (RRDP)
+   [RFC8182] was designed to provide an alternative.  In order to
    facilitate incremental deployment RRDP has been deployed as an
    additional optional protocol, while rsync was still mandatory to
    implement.
 
    RPKI Repository operators are still required to provide 24/7 up-time
-   to their rsync Infrastructure, as long as the requirement to support
+   to their rsync infrastructure, as long as the requirement to support
    rsync stands.  Thus, the benefit that they get from supporting RRDP,
    which enables the use of content delivery networks (CDNs) for this
    purpose, is limited.
-
 
 
 
@@ -115,11 +115,11 @@ Internet-Draft        RPKI Repository Requirements         November 2019
 
 
    And as long as not all RPKI Repositories support RRDP, Relying Party
-   software is still required to support rsync, either by reverse
-   engineering the rsync client protocol, or by relying on calling a
-   system installed rsync binary.  The latter is inefficient, and has
-   issues with regards to versioning of the rsync binary, as well as
-   reporting errors reliably.
+   software is still required to support rsync.  Because there is a lack
+   of rsync client libraries, this is typically implemented by calling a
+   system installed rsync binary.  This is inefficient, and has issues
+   with regards to versioning of the rsync binary, as well as reporting
+   errors reliably.
 
    This document requires that all RPKI repositories and all Relying
    Parties support RRDP.  It also stipulates that these parties are no
@@ -267,10 +267,10 @@ Internet-Draft        RPKI Repository Requirements         November 2019
               Scheme", RFC 5781, DOI 10.17487/RFC5781, February 2010,
               <https://www.rfc-editor.org/info/rfc5781>.
 
-   [RFC6481]  Huston, G., Loomans, R., and G. Michaelson, "A Profile for
-              Resource Certificate Repository Structure", RFC 6481,
-              DOI 10.17487/RFC6481, February 2012,
-              <https://www.rfc-editor.org/info/rfc6481>.
+   [RFC6480]  Lepinski, M. and S. Kent, "An Infrastructure to Support
+              Secure Internet Routing", RFC 6480, DOI 10.17487/RFC6480,
+              February 2012, <https://www.rfc-editor.org/info/rfc6480>.
+
 
 
 
@@ -281,6 +281,11 @@ Bruijnzeels                Expires May 7, 2020                  [Page 5]
 
 Internet-Draft        RPKI Repository Requirements         November 2019
 
+
+   [RFC6481]  Huston, G., Loomans, R., and G. Michaelson, "A Profile for
+              Resource Certificate Repository Structure", RFC 6481,
+              DOI 10.17487/RFC6481, February 2012,
+              <https://www.rfc-editor.org/info/rfc6481>.
 
    [RFC6486]  Austein, R., Huston, G., Kent, S., and M. Lepinski,
               "Manifests for the Resource Public Key Infrastructure
@@ -314,11 +319,6 @@ Author's Address
 
    Email: tim@nlnetlabs.nl
    URI:   https://www.nlnetlabs.nl/
-
-
-
-
-
 
 
 
