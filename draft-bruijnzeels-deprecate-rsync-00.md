@@ -138,7 +138,7 @@ removed before possible publication.]
 
 | Repository Implementation | Support for RRDP  |
 |---------------------------|-------------------|
-| afrinic                   | no                |
+| afrinic                   | planned           |
 | apnic                     | yes               |
 | arin                      | under development |
 | lacnic                    | planned           |

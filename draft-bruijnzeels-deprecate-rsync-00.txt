@@ -207,7 +207,7 @@ Internet-Draft        RPKI Repository Requirements         November 2019
              +---------------------------+-------------------+
              | Repository Implementation |  Support for RRDP |
              +---------------------------+-------------------+
-             |          afrinic          |         no        |
+             |          afrinic          |      planned      |
              |           apnic           |        yes        |
              |            arin           | under development |
              |           lacnic          |      planned      |
