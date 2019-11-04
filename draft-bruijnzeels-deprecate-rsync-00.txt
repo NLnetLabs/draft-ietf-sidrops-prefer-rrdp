@@ -4,9 +4,9 @@
 
 Network Working Group                                     T. Bruijnzeels
 Internet-Draft                                                NLnet Labs
-Updates: 6841 (if approved)                             November 1, 2019
+Updates: 6841 (if approved)                             November 4, 2019
 Intended status: Standards Track
-Expires: May 4, 2020
+Expires: May 7, 2020
 
 
    Resource Public Key Infrastructure (RPKI) Repository Requirements
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 4, 2020.
+   This Internet-Draft will expire on May 7, 2020.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Bruijnzeels                Expires May 4, 2020                  [Page 1]
+Bruijnzeels                Expires May 7, 2020                  [Page 1]
 
 Internet-Draft        RPKI Repository Requirements         November 2019
 
@@ -94,11 +94,11 @@ Table of Contents
 2.  Motivation
 
    The RPKI Repository Delta Protocol [RFC8182] (RRDP) was designed to
-   provide an alternative repository access protocol which could be
-   deployed in addition to the mandatory to implement rsync repository
-   structure outlined in [RFC6481].  In order to facilitate incremental
-   deployment RRDP has been deployed as an additional protocol, in
-   addition to rsync.
+   provide an alternative repository access protocol in addition to the
+   rsync repository structure outlined in [RFC6481].  In order to
+   facilitate incremental deployment RRDP has been deployed as an
+   additional optional protocol, while rsync was still mandatory to
+   implement.
 
    RPKI Repository operators are still required to provide 24/7 up-time
    to their rsync Infrastructure, as long as the requirement to support
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Bruijnzeels                Expires May 4, 2020                  [Page 2]
+Bruijnzeels                Expires May 7, 2020                  [Page 2]
 
 Internet-Draft        RPKI Repository Requirements         November 2019
 
@@ -165,7 +165,7 @@ Internet-Draft        RPKI Repository Requirements         November 2019
 
 
 
-Bruijnzeels                Expires May 4, 2020                  [Page 3]
+Bruijnzeels                Expires May 7, 2020                  [Page 3]
 
 Internet-Draft        RPKI Repository Requirements         November 2019
 
@@ -221,7 +221,7 @@ Internet-Draft        RPKI Repository Requirements         November 2019
 
 
 
-Bruijnzeels                Expires May 4, 2020                  [Page 4]
+Bruijnzeels                Expires May 7, 2020                  [Page 4]
 
 Internet-Draft        RPKI Repository Requirements         November 2019
 
@@ -277,7 +277,7 @@ Internet-Draft        RPKI Repository Requirements         November 2019
 
 
 
-Bruijnzeels                Expires May 4, 2020                  [Page 5]
+Bruijnzeels                Expires May 7, 2020                  [Page 5]
 
 Internet-Draft        RPKI Repository Requirements         November 2019
 
@@ -333,4 +333,4 @@ Author's Address
 
 
 
-Bruijnzeels                Expires May 4, 2020                  [Page 6]
+Bruijnzeels                Expires May 7, 2020                  [Page 6]

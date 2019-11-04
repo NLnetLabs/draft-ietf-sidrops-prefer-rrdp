@@ -393,7 +393,7 @@
 
   <meta name="dct.creator" content="Bruijnzeels, T." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-bruijnzeels-deprecate-rsync-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-11-01" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-11-04" />
   <meta name="dct.abstract" content="This document updates the profile for the structure of the Resource Public Key Infrastructure (RPKI) distributed repository " />
   <meta name="description" content="This document updates the profile for the structure of the Resource Public Key Infrastructure (RPKI) distributed repository " />
 
@@ -414,14 +414,14 @@
 </tr>
 <tr>
 <td class="left">Updates: 6841 (if approved)</td>
-<td class="right">November 1, 2019</td>
+<td class="right">November 4, 2019</td>
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
 <td class="right"></td>
 </tr>
 <tr>
-<td class="left">Expires: May 4, 2020</td>
+<td class="left">Expires: May 7, 2020</td>
 <td class="right"></td>
 </tr>
 
@@ -439,7 +439,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on May 4, 2020.</p>
+<p>This Internet-Draft will expire on May 7, 2020.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -484,7 +484,7 @@
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#motivation" id="motivation">Motivation</a>
 </h1>
-<p id="rfc.section.2.p.1">The RPKI Repository Delta Protocol <a href="#RFC8182" class="xref">[RFC8182]</a> (RRDP) was designed to provide an alternative repository access protocol which could be deployed in addition to the mandatory to implement rsync repository structure outlined in <a href="#RFC6481" class="xref">[RFC6481]</a>.  In order to facilitate incremental deployment RRDP has been deployed as an additional protocol, in addition to rsync.  </p>
+<p id="rfc.section.2.p.1">The RPKI Repository Delta Protocol <a href="#RFC8182" class="xref">[RFC8182]</a> (RRDP) was designed to provide an alternative repository access protocol in addition to the rsync repository structure outlined in <a href="#RFC6481" class="xref">[RFC6481]</a>. In order to facilitate incremental deployment RRDP has been deployed as an additional optional protocol, while rsync was still mandatory to implement.  </p>
 <p id="rfc.section.2.p.2">RPKI Repository operators are still required to provide 24/7 up-time to their rsync Infrastructure, as long as the requirement to support rsync stands. Thus, the benefit that they get from supporting RRDP, which enables the use of content delivery networks (CDNs) for this purpose, is limited.  </p>
 <p id="rfc.section.2.p.3">And as long as not all RPKI Repositories support RRDP, Relying Party software is still required to support rsync, either by reverse engineering the rsync client protocol, or by relying on calling a system installed rsync binary. The latter is inefficient, and has issues with regards to versioning of the rsync binary, as well as reporting errors reliably.  </p>
 <p id="rfc.section.2.p.4">This document requires that all RPKI repositories and all Relying Parties support RRDP. It also stipulates that these parties are no longer required to support rsync. This way all parties are freed of direct operational dependencies on rsync.  </p>

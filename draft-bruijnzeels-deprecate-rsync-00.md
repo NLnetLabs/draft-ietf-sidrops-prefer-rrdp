@@ -50,10 +50,10 @@ this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC817
 # Motivation
 
 The RPKI Repository Delta Protocol [@!RFC8182] (RRDP) was designed to provide an
-alternative repository access protocol which could be deployed in addition
-to the mandatory to implement rsync repository structure outlined in [@!RFC6481].
-In order to facilitate incremental deployment RRDP has been deployed as an
-additional protocol, in addition to rsync.
+alternative repository access protocol in addition to the rsync repository
+structure outlined in [@!RFC6481]. In order to facilitate incremental deployment
+RRDP has been deployed as an additional optional protocol, while rsync was still
+mandatory to implement.
 
 RPKI Repository operators are still required to provide 24/7 up-time to their
 rsync Infrastructure, as long as the requirement to support rsync stands. Thus,

@@ -27,7 +27,7 @@
 <uri>https://www.nlnetlabs.nl/</uri>
 </address>
 </author>
-<date year="2019" month="November" day="1"/>
+<date year="2019" month="November" day="4"/>
 
 <area>Internet</area>
 <workgroup></workgroup>
@@ -63,10 +63,10 @@ this document are to be interpreted as described in BCP 14 <xref target="RFC2119
 
 <section anchor="motivation" title="Motivation">
 <t>The RPKI Repository Delta Protocol <xref target="RFC8182"/> (RRDP) was designed to provide an
-alternative repository access protocol which could be deployed in addition
-to the mandatory to implement rsync repository structure outlined in <xref target="RFC6481"/>.
-In order to facilitate incremental deployment RRDP has been deployed as an
-additional protocol, in addition to rsync.
+alternative repository access protocol in addition to the rsync repository
+structure outlined in <xref target="RFC6481"/>. In order to facilitate incremental deployment
+RRDP has been deployed as an additional optional protocol, while rsync was still
+mandatory to implement.
 </t>
 <t>RPKI Repository operators are still required to provide 24/7 up-time to their
 rsync Infrastructure, as long as the requirement to support rsync stands. Thus,
