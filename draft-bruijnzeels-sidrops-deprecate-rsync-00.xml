@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rfc SYSTEM 'rfc2629.dtd' []>
-<rfc ipr="trust200902" category="std" docName="draft-bruijnzeels-deprecate-rsync-00" updates="6841">
+<rfc ipr="trust200902" category="std" docName="draft-sidrops-bruijnzeels-deprecate-rsync-00" updates="6841">
 <?rfc toc="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc sortrefs="yes"?>

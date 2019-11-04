@@ -10,7 +10,7 @@ Expires: May 7, 2020
 
 
    Resource Public Key Infrastructure (RPKI) Repository Requirements
-                  draft-bruijnzeels-deprecate-rsync-00
+              draft-sidrops-bruijnzeels-deprecate-rsync-00
 
 Abstract
 

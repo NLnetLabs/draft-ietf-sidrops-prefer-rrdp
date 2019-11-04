@@ -1,7 +1,7 @@
 %%%
 Title = "Resource Public Key Infrastructure (RPKI) Repository Requirements"
 category = "std"
-docName = "draft-bruijnzeels-deprecate-rsync-00"
+docName = "draft-sidrops-bruijnzeels-deprecate-rsync-00"
 abbrev = "RPKI Repository Requirements"
 ipr = "trust200902"
 updates = [6841]
