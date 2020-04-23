@@ -218,7 +218,7 @@ removed before possible publication.]
 | arin                      | yes               |
 | lacnic                    | planned           |
 | ripe ncc                  | yes               |
-| rpki.net                  | yes(1)            |
+| Dragon Research Labs      | yes(1)            |
 | krill                     | yes(1)            |
 
 (1) in use at various National Internet Registries, as well as other resource

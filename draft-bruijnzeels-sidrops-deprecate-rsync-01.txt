@@ -302,7 +302,7 @@ Internet-Draft        RPKI Repository Requirements            April 2020
              |            arin           |       yes        |
              |           lacnic          |     planned      |
              |          ripe ncc         |       yes        |
-             |          rpki.net         |      yes(1)      |
+             |    Dragon Research Labs   |      yes(1)      |
              |           krill           |      yes(1)      |
              +---------------------------+------------------+
 
