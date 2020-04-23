@@ -281,7 +281,7 @@ removed before possible publication.]
 <c>rcynic</c><c>yes</c><c>?</c><c>?</c>
 <c>RIPE NCC RPKI Validator 2.x</c><c>yes</c><c>?</c><c>?</c>
 <c>RIPE NCC RPKI Validator 3.x</c><c>yes</c><c>?</c><c>?</c>
-<c>Routinator</c><c>yes</c><c>?</c><c>?</c>
+<c>Routinator</c><c>yes</c><c>0.6.0</c><c>Sep 2019</c>
 <c>rpki-client</c><c>no</c><c>?</c><c>?</c>
 <c>RPSTIR</c><c>yes</c><c>?</c><c>?</c>
 </texttable>

@@ -226,16 +226,16 @@ removed before possible publication.]
 
 ## RRDP support in Relying Party software
 
-| Relying Party Implementation | RRDP | version | since |
-|------------------------------|------|---------|-------|
-| FORT                         | yes  |       ? |     ? |
-| OctoRPKI                     | yes  |       ? |     ? |
-| rcynic                       | yes  |       ? |     ? |
-| RIPE NCC RPKI Validator 2.x  | yes  |       ? |     ? |
-| RIPE NCC RPKI Validator 3.x  | yes  |       ? |     ? |
-| Routinator                   | yes  |       ? |     ? |
-| rpki-client                  | no   |       ? |     ? |
-| RPSTIR                       | yes  |       ? |     ? |
+| Relying Party Implementation | RRDP | version | since    |
+|------------------------------|------|---------|----------|
+| FORT                         | yes  |       ? |     ?    |
+| OctoRPKI                     | yes  |       ? |     ?    |
+| rcynic                       | yes  |       ? |     ?    |
+| RIPE NCC RPKI Validator 2.x  | yes  |       ? |     ?    |
+| RIPE NCC RPKI Validator 3.x  | yes  |       ? |     ?    |
+| Routinator                   | yes  |   0.6.0 | Sep 2019 |
+| rpki-client                  | no   |       ? |     ?    |
+| RPSTIR                       | yes  |       ? |     ?    |
 
 The authors kindly request Relying Party software implementers to let us know
 in which version of their tool support for RRDP was introduced, and when that
