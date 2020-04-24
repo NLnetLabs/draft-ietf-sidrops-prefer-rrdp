@@ -42,18 +42,27 @@ organization = "APNIC"
 
 .# Abstract
 
+The goal of this document is to transition to a state where neither
+RPKI repositories nor Relying Party software performing RPKI Validation
+have operational dependencies on the availability of the repository
+using rsync. Rsync access is for easy incidental, human, access to RPKI
+objects is still required.
+
+This document updates the RPKI Repository Delta Protocol (RRDP) [@!RFC8182]
+instructing Relying Parties to use RRDP wherever it is found, and
+stop relying on rsync in those cases.
+
 This document updates the profile for the structure of the Resource
 Public Key Infrastructure (RPKI) distributed repository [@!RFC6481]
-by describing how the RPKI Repository Delta Protocol (RRDP) [@!RFC8182]
-can be used, and stipulating that repositories which are made available
-over RRDP are no longer required to be available over rsync.
+by (1) adding the RPKI Repository Delta Protocol (RRDP) [@!RFC8182]
+as a mandatory to support highly available service; and (2) relaxing
+the requirement on the availability of the rsync service.
 
-The Profile for X.509 PKIX Resource Certificates [@!RFC6487] uses rsync
-URIs in the Authority Information Access, Subject Information Access,
-and CRL Distribution Points extensions. This document leaves this unchanged,
-meaning that rsync URIs are still used for naming and finding objects in the RPKI.
-However, it is no longer guaranteed that objects can be retrieved using these
-URIs.
+It should be noted however, that these changes cannot be applied
+atomically and universally without respecting operational realities.
+Therefore this document includes a description of deployment phases
+that need to be followed to ensure that these changes will not cause
+major operational issues.
 
 {mainmatter}
 
@@ -62,6 +71,7 @@ URIs.
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in
 this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174] when, and only when, they appear in all capitals, as shown here.
+
 
 # Motivation
 
@@ -72,29 +82,81 @@ alternative. In order to facilitate incremental deployment RRDP has been
 deployed as an additional optional protocol, while rsync was still mandatory to
 implement.
 
-RPKI Repository operators are still required to provide 24/7 up-time to their
-rsync infrastructure, as long as the requirement to support rsync stands. Thus,
-the benefit that they get from supporting RRDP, which enables the use of content
-delivery networks (CDNs) for this purpose, is limited.
+A number of issues observed with rsync motivated the design of RRDP, e.g.:
 
-And as long as not all RPKI Repositories support RRDP, Relying Party software is
-still required to support rsync. Because there is a lack of rsync client
-libraries, this is typically implemented by calling a system installed rsync
-binary. This is inefficient, and has issues with regards to versioning of the
-rsync binary, as well as reporting errors reliably.
+- rsync is CPU and memory heavy, and easy to DoS
+- rsync library support is lacking
+- rsync makes it somewhat difficult to publish sets of object atomically
 
-This document requires that:
-- All RPKI repositories support RRDP as a highly available service
-- Relying Parties support and prefer RRDP over rsync
-- RPKI repositories support rsync for debugging purposes only
+RRDP was designed to leverage HTTPS CDN infrastructure to provide RPKI Repository
+content in a resilient way, while reducing the load on the Repository server. It
+supports that updates are published as atomic deltas, which can help prevent
+most of the issues described in [section 6 of @!RFC6486].
 
-This way all parties are freed of direct operational dependencies on
-rsync.
+For a longer discussion please see [section 1 of @!RFC8182].
+
+In conclusion: we believe that RRDP is the better solution. Therefore, this
+document outlines a transition plan where RRDP becomes mandatory to implement,
+and rsync becomes optional and eventually deprecated.
 
 
-# Updates to RFC 6481
+# Plan
 
-This document updates [section 3 of @!RFC6481].
+Changing the RPKI infrastructure to rely on RRDP instead of rsync is a delicate
+operation. There is current deployment of Certification Authorities, Repository
+Servers and Relying Party software which relies on rsync, and which may not yet
+support RRDP.
+
+Therefore we need to have a plan that ultimately updates the relevant RFCs, but
+which uses a phased approach combined with measurements to limit the operational
+impact of doing this to (almost) zero.
+
+The general outline of the plan is as follows. We will describe each step in
+more detail below.
+
+| Phase | Description                                                   |
+|-------|---------------------------------------------------------------|
+|   0   | RPKI repositories support rsync, and optionally RRDP          |
+|   1   | RPKI repositories support both rsync and RRDP                 |
+|   2   | All RP software prefers RRDP                                  |
+|   3   | RPKI repositories support RRDP, and optionally rsync          |
+
+
+## Phase 0 - RPKI repositories support rsync, and optionally RRDP
+
+This is the situation at the time of writing this document. Relying Parties can
+prefer RRDP over rsync today, but they need to support rsync until all RPKI
+repositories support RRDP. Therefore all repositories should support RRDP at
+their earliest convenience.
+
+
+## Phase 1 - RPKI repositories support both rsync and RRDP
+
+During this phase we will make RRDP mandatory to support for Repository Servers,
+and measure whether the deployed Repository Servers have been upgraded to do so,
+in as far as they don't support RRDP already.
+
+### Current Support for RRDP in Repository Software
+
+The currently known support for RRDP for repositories is as follows:
+
+| Repository Implementation | Support for RRDP  |
+|---------------------------|-------------------|
+| afrinic                   | yes               |
+| apnic                     | yes               |
+| arin                      | yes               |
+| lacnic                    | planned           |
+| ripe ncc                  | yes               |
+| Dragon Research Labs      | yes(1,2)          |
+| krill                     | yes(1)            |
+
+(1) in use at various National Internet Registries, as well as other resource
+    holders under RIRs.
+(2) not all organizations using this software have upgraded to using RRDP.
+
+### Updates to RFC 6481
+
+During this phase the updates are applied to [section 3 of @!RFC6481].
 
 OLD:
 
@@ -112,19 +174,51 @@ NEW:
 - The publication repository MUST be available using the RPKI
   Repository Delta Protocol [@!RFC8182]. The RRDP server SHOULD
   be hosted on a highly available platform.
-- The publication repository SHOULD be available using rsync
-  [@!RFC5781] to support easy direct access to RPKI objects for
-  debugging purposes. However, it no longer required that the rsync
-  repository is hosted on a highly available service and high-capacity
-  publication platform.
+- The publication repository MUST be available using rsync
+  [@!RFC5781] [RSYNC]. The rsync server SHOULD be hosted on a
+  highly available platform.
 - Support of additional retrieval mechanisms is the choice of the repository
   operator. The supported retrieval mechanisms MUST be consistent with the
   accessMethod element value(s) specified in the SIA of the associated CA or
   EE certificate.
 
-# Updates to RFC 8182
+### Measurements
 
-This document updates [section 3.4.1 of @!RFC8182].
+We can find out whether all RPKI repositories support RRDP by running (possibly)
+modified Relying Party software that keeps track of this.
+
+When it is found that Repositories do not yet support RRDP, outreach should be
+done to them individually. Since the number of Repositories is fairly low, and
+it is in their interest to run RRDP because it addresses availability concerns,
+we have confidence that we will find these Repositories willing to make changes.
+
+## Phase 2 - All RP software prefers RRDP
+
+Once all Repositories support RRDP we can proceed to make RRDP mandatory to
+implement for Relying Party software.
+
+### RRDP support in Relying Party software
+
+The currently known support for RRDP in Relying Party software is as follows:
+
+| Relying Party Implementation | RRDP | version | since    |
+|------------------------------|------|---------|----------|
+| FORT                         | yes  |       ? |     ?    |
+| OctoRPKI                     | yes  |       ? |     ?    |
+| rcynic                       | yes  |       ? |     ?    |
+| RIPE NCC RPKI Validator 2.x  | yes  |       ? |     ?    |
+| RIPE NCC RPKI Validator 3.x  | yes  |       ? |     ?    |
+| Routinator                   | yes  |   0.6.0 | Sep 2019 |
+| rpki-client                  | no   |       ? |     ?    |
+| RPSTIR                       | yes  |       ? |     ?    |
+
+The authors kindly request Relying Party software implementers to let us know
+in which version of their tool support for RRDP was introduced, and when that
+version was released.
+
+### Updates to RFC 8182
+
+From this phase onwards the updates are applied to [section 3.4.1 of @!RFC8182].
 
 OLD:
   When a Relying Party performs RPKI validation and learns about a
@@ -139,7 +233,60 @@ NEW:
   rsync access for other purposes under the understanding that availability
   is not guaranteed.
 
+### Measurements
+
+Although the tools may support RRDP, users will still need to install updated
+versions of these tools in their infrastructure. Any Repository operator can
+measure this transition by observing access to their RRDP and rsync repositories
+respectively.
+
+But even after new versions have been available, it is expected that there will
+be long, low volume, tail of users who did not upgrade and still depend on rsync.
+
+It is hard to quantify here now, what would be an acceptable moment to conclude
+that it's safe to move to the next phase and make rsync optional. A parallel to
+the so-called DNS Flag Day comes to mind.
+
+## Phase 3 - RPKI repositories support RRDP, and optionally rsync
+
+The end goal of this phase is that there will be no operational dependencies on
+rsync for Repositories, although they MAY still choose to operate rsync at a
+best effort basis.
+
+### Updates to RFC 6481
+
+From this phase onwards these updates are applied to [section 3 of @!RFC6481] as
+it was updated during Phase 2 described above:
+
+OLD:
+
+- The publication repository MUST be available using the RPKI
+  Repository Delta Protocol [@!RFC8182]. The RRDP server SHOULD
+  be hosted on a highly available platform.
+- The publication repository MUST be available using rsync
+  [@!RFC5781] [RSYNC]. The rsync server SHOULD be hosted on a
+  highly available platform.
+- Support of additional retrieval mechanisms is the choice of the repository
+  operator. The supported retrieval mechanisms MUST be consistent with the
+  accessMethod element value(s) specified in the SIA of the associated CA or
+  EE certificate.
+
+NEW:
+
+- The publication repository MUST be available using the RPKI
+  Repository Delta Protocol [@!RFC8182]. The RRDP server SHOULD
+  be hosted on a highly available platform.
+- The publication repository MAY be available using rsync [@!RFC5781] [RSYNC].
+- Support of additional retrieval mechanisms is the choice of the repository
+  operator. The supported retrieval mechanisms MUST be consistent with the
+  accessMethod element value(s) specified in the SIA of the associated CA or
+  EE certificate.
+
+
 # Rsync URIs as object identifiers
+
+If and when RPKI Repositories no longer need to support rsync, this begs the
+question whether rsync should still be used in URIs used in RPKI objects.
 
 [@!RFC6481] defines a profile for the Resource Certificate Repository Structure.
 In this profile objects are identified through rsync URIs. E.g. a CA certificate
@@ -170,76 +317,9 @@ to be supported by all Relying Parties, before Certification Authorities can
 issue any certificate or RPKI signed objects using these schemes.
 
 Furthermore, it is very convenient to have direct access to RPKI objects using
-rsync for troubleshooting, debugging and research purposes.
-
-# Deployment Phases
-
-We recognise the following phases:
-
-## Phase 0 - RPKI repositories support rsync, and optionally RRDP
-
-This is the situation at the time of writing this document. Relying Parties can
-prefer RRDP over rsync today, but they need to support rsync until all RPKI
-repositories support RRDP. Therefore all repositories should support RRDP at
-their earliest convenience.
-
-## Phase 1 - RPKI repositories support both rsync and RRDP
-
-Once all repositories support RRDP, all Relying Party software should start to
-prefer it over rsync.
-
-## Phase 2 - All RP software prefers RRDP
-
-Although the tools may support RRDP, users will still need to install updated
-versions of these tools in their infrastructure. Therefore it is expected that
-there will be long tail of users who still depend on rsync to be highly
-available.
-
-Measurements can help to determine the shape of this tail and can then help to
-inform the technical community of when it would be safe to move to the next
-phase.
-
-## Phase 3 - No operational dependencies on rsync
-
-During this phase RPKI repositories will no longer be required to support rsync
-as a highly available service.
-
-# Current State of RRDP Deployment
-
-[This section can be updated during discussion of this document, and may be
-removed before possible publication.]
-
-## RRDP support in RPKI Repositories
-
-| Repository Implementation | Support for RRDP  |
-|---------------------------|-------------------|
-| afrinic                   | yes               |
-| apnic                     | yes               |
-| arin                      | yes               |
-| lacnic                    | planned           |
-| ripe ncc                  | yes               |
-| Dragon Research Labs      | yes(1)            |
-| krill                     | yes(1)            |
-
-(1) in use at various National Internet Registries, as well as other resource
-    holders under RIRs.
-
-## RRDP support in Relying Party software
-
-| Relying Party Implementation | RRDP | version | since    |
-|------------------------------|------|---------|----------|
-| FORT                         | yes  |       ? |     ?    |
-| OctoRPKI                     | yes  |       ? |     ?    |
-| rcynic                       | yes  |       ? |     ?    |
-| RIPE NCC RPKI Validator 2.x  | yes  |       ? |     ?    |
-| RIPE NCC RPKI Validator 3.x  | yes  |       ? |     ?    |
-| Routinator                   | yes  |   0.6.0 | Sep 2019 |
-| rpki-client                  | no   |       ? |     ?    |
-| RPSTIR                       | yes  |       ? |     ?    |
-
-The authors kindly request Relying Party software implementers to let us know
-in which version of their tool support for RRDP was introduced, and when that
-version was released.
+rsync for troubleshooting, debugging and research purposes. Therefore Repository
+operators MAY still choose to make an rsync repository available for these
+purposes.
 
 # IANA Considerations
 
@@ -252,6 +332,5 @@ TBD
 # Acknowledgements
 
 TBD
-
 
 {backmatter}
