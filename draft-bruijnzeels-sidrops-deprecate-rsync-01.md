@@ -42,27 +42,35 @@ organization = "APNIC"
 
 .# Abstract
 
-The goal of this document is to transition to a state where neither
-RPKI repositories nor Relying Party software performing RPKI Validation
-have operational dependencies on the availability of the repository
-using rsync. Rsync access is for easy incidental, human, access to RPKI
-objects is still required.
+This document formulates a plan of a phased transition to a state where
+RPKI repositories and Relying Party software performing RPKI Validation
+will use the RPKI Repository Delta Protocol (RRDP) [@!RFC8182] as the
+only mandatory to implement access protocol.
 
-This document updates the RPKI Repository Delta Protocol (RRDP) [@!RFC8182]
-instructing Relying Parties to use RRDP wherever it is found, and
-stop relying on rsync in those cases.
+In short this plan consists of the following phases.
 
-This document updates the profile for the structure of the Resource
-Public Key Infrastructure (RPKI) distributed repository [@!RFC6481]
-by (1) adding the RPKI Repository Delta Protocol (RRDP) [@!RFC8182]
-as a mandatory to support highly available service; and (2) relaxing
-the requirement on the availability of the rsync service.
+In phase 0, today's deployment, RRDP is supported by most, but not all
+Repositories, and most but not all RP software.
 
-It should be noted however, that these changes cannot be applied
-atomically and universally without respecting operational realities.
-Therefore this document includes a description of deployment phases
-that need to be followed to ensure that these changes will not cause
-major operational issues.
+In the proposed phase 1 RRDP will become mandatory to implement for
+Repositories, in addition to rsync. This phase can start as soon as
+this document is published.
+
+Once the proposed updates are implemented by all Repositories phase 2
+will start. In this phase RRDP will become mandatory to implement for
+all RP software, and rsync must no longer be used.
+
+Measurements will need to be done to help determine when it will be
+safe to transition to the final phase of this plan. During this phase
+Repositories will no longer be required to provide rsync access for
+RPKI validation purposes. However, they may still provide rsync access
+for direct access to files for other purposes, if desired, at a best
+effort basis.
+
+Although this document currently includes descriptions and updates
+to RFCs for each of these phases, we may find that it will be beneficial
+to have separate documents for the plan, and each phase, so that it
+might be more clear to all when the updates to RFCs take effect.
 
 {mainmatter}
 
@@ -91,9 +99,9 @@ A number of issues observed with rsync motivated the design of RRDP, e.g.:
 RRDP was designed to leverage HTTPS CDN infrastructure to provide RPKI Repository
 content in a resilient way, while reducing the load on the Repository server. It
 supports that updates are published as atomic deltas, which can help prevent
-most of the issues described in [section 6 of @!RFC6486].
+most of the issues described in section 6 of [@!RFC6486].
 
-For a longer discussion please see [section 1 of @!RFC8182].
+For a longer discussion please see section 1 of [@!RFC8182].
 
 In conclusion: we believe that RRDP is the better solution. Therefore, this
 document outlines a transition plan where RRDP becomes mandatory to implement,
@@ -156,7 +164,7 @@ The currently known support for RRDP for repositories is as follows:
 
 ### Updates to RFC 6481
 
-During this phase the updates are applied to [section 3 of @!RFC6481].
+During this phase the updates are applied to section 3 of [@!RFC6481].
 
 OLD:
 
@@ -218,7 +226,7 @@ version was released.
 
 ### Updates to RFC 8182
 
-From this phase onwards the updates are applied to [section 3.4.1 of @!RFC8182].
+From this phase onwards the updates are applied to section 3.4.1 of [@!RFC8182].
 
 OLD:
   When a Relying Party performs RPKI validation and learns about a
@@ -255,7 +263,7 @@ best effort basis.
 
 ### Updates to RFC 6481
 
-From this phase onwards these updates are applied to [section 3 of @!RFC6481] as
+From this phase onwards these updates are applied to section 3 of [@!RFC6481] as
 it was updated during Phase 2 described above:
 
 OLD:

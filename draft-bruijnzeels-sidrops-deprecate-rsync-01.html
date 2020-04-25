@@ -401,9 +401,9 @@
 
   <meta name="dct.creator" content="Bruijnzeels, T., Bush, R., and G. Michaelson" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-sidrops-bruijnzeels-deprecate-rsync-01" />
-  <meta name="dct.issued" scheme="ISO8601" content="2020-04-24" />
-  <meta name="dct.abstract" content="The goal of this document is to transition to a state where neither RPKI repositories nor Relying Party software performing RPKI Validation have operational dependencies on the availability of the repository using rsync. Rsync access is for easy incidental, human, access to RPKI objects is still required.  " />
-  <meta name="description" content="The goal of this document is to transition to a state where neither RPKI repositories nor Relying Party software performing RPKI Validation have operational dependencies on the availability of the repository using rsync. Rsync access is for easy incidental, human, access to RPKI objects is still required.  " />
+  <meta name="dct.issued" scheme="ISO8601" content="2020-04-25" />
+  <meta name="dct.abstract" content="This document formulates a plan of a phased transition to a state where RPKI repositories and Relying Party software performing RPKI Validation will use the RPKI Repository Delta Protocol (RRDP) " />
+  <meta name="description" content="This document formulates a plan of a phased transition to a state where RPKI repositories and Relying Party software performing RPKI Validation will use the RPKI Repository Delta Protocol (RRDP) " />
 
 </head>
 
@@ -429,7 +429,7 @@
 <td class="right">Internet Initiative Japan &amp; Arrcus, Inc.</td>
 </tr>
 <tr>
-<td class="left">Expires: October 26, 2020</td>
+<td class="left">Expires: October 27, 2020</td>
 <td class="right">G. Michaelson</td>
 </tr>
 <tr>
@@ -438,7 +438,7 @@
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">April 24, 2020</td>
+<td class="right">April 25, 2020</td>
 </tr>
 
     	
@@ -449,15 +449,18 @@
   <span class="filename">draft-sidrops-bruijnzeels-deprecate-rsync-01</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>The goal of this document is to transition to a state where neither RPKI repositories nor Relying Party software performing RPKI Validation have operational dependencies on the availability of the repository using rsync. Rsync access is for easy incidental, human, access to RPKI objects is still required.  </p>
-<p>This document updates the RPKI Repository Delta Protocol (RRDP) <a href="#RFC8182" class="xref">[RFC8182]</a> instructing Relying Parties to use RRDP wherever it is found, and stop relying on rsync in those cases.  </p>
-<p>This document updates the profile for the structure of the Resource Public Key Infrastructure (RPKI) distributed repository <a href="#RFC6481" class="xref">[RFC6481]</a> by (1) adding the RPKI Repository Delta Protocol (RRDP) <a href="#RFC8182" class="xref">[RFC8182]</a> as a mandatory to support highly available service; and (2) relaxing the requirement on the availability of the rsync service.  </p>
-<p>It should be noted however, that these changes cannot be applied atomically and universally without respecting operational realities.  Therefore this document includes a description of deployment phases that need to be followed to ensure that these changes will not cause major operational issues.  </p>
+<p>This document formulates a plan of a phased transition to a state where RPKI repositories and Relying Party software performing RPKI Validation will use the RPKI Repository Delta Protocol (RRDP) <a href="#RFC8182" class="xref">[RFC8182]</a> as the only mandatory to implement access protocol.  </p>
+<p>In short this plan consists of the following phases.  </p>
+<p>In phase 0, today's deployment, RRDP is supported by most, but not all Repositories, and most but not all RP software.  </p>
+<p>In the proposed phase 1 RRDP will become mandatory to implement for Repositories, in addition to rsync. This phase can start as soon as this document is published.  </p>
+<p>Once the proposed updates are implemented by all Repositories phase 2 will start. In this phase RRDP will become mandatory to implement for all RP software, and rsync must no longer be used.  </p>
+<p>Measurements will need to be done to help determine when it will be safe to transition to the final phase of this plan. During this phase Repositories will no longer be required to provide rsync access for RPKI validation purposes. However, they may still provide rsync access for direct access to files for other purposes, if desired, at a best effort basis.  </p>
+<p>Although this document currently includes descriptions and updates to RFCs for each of these phases, we may find that it will be beneficial to have separate documents for the plan, and each phase, so that it might be more clear to all when the updates to RFCs take effect.  </p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on October 26, 2020.</p>
+<p>This Internet-Draft will expire on October 27, 2020.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2020 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -529,8 +532,8 @@
 </ul>
 
 <p> </p>
-<p id="rfc.section.2.p.4">RRDP was designed to leverage HTTPS CDN infrastructure to provide RPKI Repository content in a resilient way, while reducing the load on the Repository server. It supports that updates are published as atomic deltas, which can help prevent most of the issues described in [section 6 of @!RFC6486].  </p>
-<p id="rfc.section.2.p.5">For a longer discussion please see [section 1 of @!RFC8182].  </p>
+<p id="rfc.section.2.p.4">RRDP was designed to leverage HTTPS CDN infrastructure to provide RPKI Repository content in a resilient way, while reducing the load on the Repository server. It supports that updates are published as atomic deltas, which can help prevent most of the issues described in section 6 of <a href="#RFC6486" class="xref">[RFC6486]</a>.  </p>
+<p id="rfc.section.2.p.5">For a longer discussion please see section 1 of <a href="#RFC8182" class="xref">[RFC8182]</a>.  </p>
 <p id="rfc.section.2.p.6">In conclusion: we believe that RRDP is the better solution. Therefore, this document outlines a transition plan where RRDP becomes mandatory to implement, and rsync becomes optional and eventually deprecated.  </p>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#plan" id="plan">Plan</a>
@@ -614,7 +617,7 @@
 <h1 id="rfc.section.3.2.2">
 <a href="#rfc.section.3.2.2">3.2.2.</a> <a href="#updates-to-rfc-6481" id="updates-to-rfc-6481">Updates to RFC 6481</a>
 </h1>
-<p id="rfc.section.3.2.2.p.1">During this phase the updates are applied to [section 3 of @!RFC6481].  </p>
+<p id="rfc.section.3.2.2.p.1">During this phase the updates are applied to section 3 of <a href="#RFC6481" class="xref">[RFC6481]</a>.  </p>
 <p id="rfc.section.3.2.2.p.2">OLD: </p>
 <p></p>
 
@@ -709,7 +712,7 @@
 <h1 id="rfc.section.3.3.2">
 <a href="#rfc.section.3.3.2">3.3.2.</a> <a href="#updates-to-rfc-8182" id="updates-to-rfc-8182">Updates to RFC 8182</a>
 </h1>
-<p id="rfc.section.3.3.2.p.1">From this phase onwards the updates are applied to [section 3.4.1 of @!RFC8182].  </p>
+<p id="rfc.section.3.3.2.p.1">From this phase onwards the updates are applied to section 3.4.1 of <a href="#RFC8182" class="xref">[RFC8182]</a>.  </p>
 <p id="rfc.section.3.3.2.p.2">OLD: When a Relying Party performs RPKI validation and learns about a valid certificate with an SIA entry for the RRDP protocol, it SHOULD use this protocol as follows.  </p>
 <p id="rfc.section.3.3.2.p.3">NEW: When a Relying Party performs RPKI validation and learns about a valid certificate with an SIA entry for the RRDP protocol, it MUST use this protocol. It MUST NOT depend on object retrieval for this certificate over rsync for validation, although it MAY still use rsync access for other purposes under the understanding that availability is not guaranteed.  </p>
 <h1 id="rfc.section.3.3.3">
@@ -725,7 +728,7 @@
 <h1 id="rfc.section.3.4.1">
 <a href="#rfc.section.3.4.1">3.4.1.</a> <a href="#updates-to-rfc-6481-1" id="updates-to-rfc-6481-1">Updates to RFC 6481</a>
 </h1>
-<p id="rfc.section.3.4.1.p.1">From this phase onwards these updates are applied to [section 3 of @!RFC6481] as it was updated during Phase 2 described above: </p>
+<p id="rfc.section.3.4.1.p.1">From this phase onwards these updates are applied to section 3 of <a href="#RFC6481" class="xref">[RFC6481]</a> as it was updated during Phase 2 described above: </p>
 <p id="rfc.section.3.4.1.p.2">OLD: </p>
 <p></p>
 
