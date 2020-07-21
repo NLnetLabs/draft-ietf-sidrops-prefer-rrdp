@@ -6,13 +6,13 @@ Network Working Group                                     T. Bruijnzeels
 Internet-Draft                                                NLnet Labs
 Updates: 6841, 8182 (if approved)                                R. Bush
 Intended status: Standards TrackInternet Initiative Japan & Arrcus, Inc.
-Expires: October 27, 2020                                  G. Michaelson
+Expires: January 22, 2021                                  G. Michaelson
                                                                    APNIC
-                                                          April 25, 2020
+                                                           July 21, 2020
 
 
    Resource Public Key Infrastructure (RPKI) Repository Requirements
-              draft-sidrops-bruijnzeels-deprecate-rsync-01
+                 draft-ietf-sidrops-deprecate-rsync-00
 
 Abstract
 
@@ -53,9 +53,9 @@ Abstract
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020                [Page 1]
+Bruijnzeels, et al.     Expires January 22, 2021                [Page 1]
 
-Internet-Draft        RPKI Repository Requirements            April 2020
+Internet-Draft        RPKI Repository Requirements             July 2020
 
 
 Status of This Memo
@@ -73,7 +73,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 27, 2020.
+   This Internet-Draft will expire on January 22, 2021.
 
 Copyright Notice
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020                [Page 2]
+Bruijnzeels, et al.     Expires January 22, 2021                [Page 2]
 
-Internet-Draft        RPKI Repository Requirements            April 2020
+Internet-Draft        RPKI Repository Requirements             July 2020
 
 
            rsync . . . . . . . . . . . . . . . . . . . . . . . . . .   7
@@ -165,9 +165,9 @@ Internet-Draft        RPKI Repository Requirements            April 2020
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020                [Page 3]
+Bruijnzeels, et al.     Expires January 22, 2021                [Page 3]
 
-Internet-Draft        RPKI Repository Requirements            April 2020
+Internet-Draft        RPKI Repository Requirements             July 2020
 
 
    becomes mandatory to implement, and rsync becomes optional and
@@ -221,9 +221,9 @@ Internet-Draft        RPKI Repository Requirements            April 2020
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020                [Page 4]
+Bruijnzeels, et al.     Expires January 22, 2021                [Page 4]
 
-Internet-Draft        RPKI Repository Requirements            April 2020
+Internet-Draft        RPKI Repository Requirements             July 2020
 
 
              +---------------------------+------------------+
@@ -277,9 +277,9 @@ Internet-Draft        RPKI Repository Requirements            April 2020
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020                [Page 5]
+Bruijnzeels, et al.     Expires January 22, 2021                [Page 5]
 
-Internet-Draft        RPKI Repository Requirements            April 2020
+Internet-Draft        RPKI Repository Requirements             July 2020
 
 
 3.2.3.  Measurements
@@ -333,9 +333,9 @@ Internet-Draft        RPKI Repository Requirements            April 2020
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020                [Page 6]
+Bruijnzeels, et al.     Expires January 22, 2021                [Page 6]
 
-Internet-Draft        RPKI Repository Requirements            April 2020
+Internet-Draft        RPKI Repository Requirements             July 2020
 
 
    NEW: When a Relying Party performs RPKI validation and learns about a
@@ -389,9 +389,9 @@ Internet-Draft        RPKI Repository Requirements            April 2020
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020                [Page 7]
+Bruijnzeels, et al.     Expires January 22, 2021                [Page 7]
 
-Internet-Draft        RPKI Repository Requirements            April 2020
+Internet-Draft        RPKI Repository Requirements             July 2020
 
 
    NEW:
@@ -445,9 +445,9 @@ Internet-Draft        RPKI Repository Requirements            April 2020
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020                [Page 8]
+Bruijnzeels, et al.     Expires January 22, 2021                [Page 8]
 
-Internet-Draft        RPKI Repository Requirements            April 2020
+Internet-Draft        RPKI Repository Requirements             July 2020
 
 
    would need to invent an alternative naming scheme, which would need
@@ -501,9 +501,9 @@ Internet-Draft        RPKI Repository Requirements            April 2020
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020                [Page 9]
+Bruijnzeels, et al.     Expires January 22, 2021                [Page 9]
 
-Internet-Draft        RPKI Repository Requirements            April 2020
+Internet-Draft        RPKI Repository Requirements             July 2020
 
 
    [RFC6487]  Huston, G., Michaelson, G., and R. Loomans, "A Profile for
@@ -557,4 +557,4 @@ Authors' Addresses
 
 
 
-Bruijnzeels, et al.     Expires October 27, 2020               [Page 10]
+Bruijnzeels, et al.     Expires January 22, 2021               [Page 10]
