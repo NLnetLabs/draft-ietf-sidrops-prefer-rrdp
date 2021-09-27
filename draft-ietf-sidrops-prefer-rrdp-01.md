@@ -241,7 +241,7 @@ we have confidence that we will find these Repositories willing to make changes.
 
 Once all Repositories support RRDP we can proceed to make RRDP mandatory to
 implement for Relying Party software. But note that RP software is not prohibited
-from implementing this support sooner. At the time of this writing all know
+from implementing this support sooner. At the time of this writing all known
 RP software supports RRDP, although it is not known to the authors whether all
 of them have RRDP enabled and use it as the preferred protocol.
 

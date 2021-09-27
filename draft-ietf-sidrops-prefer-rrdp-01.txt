@@ -328,7 +328,7 @@ Internet-Draft        RPKI Repository Requirements        September 2021
    Once all Repositories support RRDP we can proceed to make RRDP
    mandatory to implement for Relying Party software.  But note that RP
    software is not prohibited from implementing this support sooner.  At
-   the time of this writing all know RP software supports RRDP, although
+   the time of this writing all known RP software supports RRDP,
 
 
 
@@ -338,8 +338,8 @@ Bruijnzeels, et al.      Expires March 31, 2022                 [Page 6]
 Internet-Draft        RPKI Repository Requirements        September 2021
 
 
-   it is not known to the authors whether all of them have RRDP enabled
-   and use it as the preferred protocol.
+   although it is not known to the authors whether all of them have RRDP
+   enabled and use it as the preferred protocol.
 
 3.3.1.  Updates to RFC 8182
 
