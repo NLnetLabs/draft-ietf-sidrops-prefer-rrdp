@@ -1,7 +1,7 @@
 %%%
 Title = "Resource Public Key Infrastructure (RPKI) Repository Requirements"
 category = "std"
-docName = "draft-ietf-sidrops-prefer-rrdp-00"
+docName = "draft-ietf-sidrops-prefer-rrdp-01"
 abbrev = "RPKI Repository Requirements"
 ipr = "trust200902"
 updates = [6841, 8182]

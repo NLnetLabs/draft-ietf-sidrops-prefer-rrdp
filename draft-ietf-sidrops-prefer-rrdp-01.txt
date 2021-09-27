@@ -6,13 +6,13 @@ Network Working Group                                     T. Bruijnzeels
 Internet-Draft                                                NLnet Labs
 Updates: 6841, 8182 (if approved)                                R. Bush
 Intended status: Standards TrackInternet Initiative Japan & Arrcus, Inc.
-Expires: August 26, 2021                                   G. Michaelson
+Expires: March 31, 2022                                    G. Michaelson
                                                                    APNIC
-                                                       February 22, 2021
+                                                      September 27, 2021
 
 
    Resource Public Key Infrastructure (RPKI) Repository Requirements
-                   draft-ietf-sidrops-prefer-rrdp-00
+                   draft-ietf-sidrops-prefer-rrdp-01
 
 Abstract
 
@@ -53,9 +53,9 @@ Abstract
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021                [Page 1]
+Bruijnzeels, et al.      Expires March 31, 2022                 [Page 1]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
 Status of This Memo
@@ -73,7 +73,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 26, 2021.
+   This Internet-Draft will expire on March 31, 2022.
 
 Copyright Notice
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021                [Page 2]
+Bruijnzeels, et al.      Expires March 31, 2022                 [Page 2]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
    4.  Future Objective: Remove the dependency on rsync  . . . . . .   8
@@ -165,9 +165,9 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021                [Page 3]
+Bruijnzeels, et al.      Expires March 31, 2022                 [Page 3]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
    atomic deltas, which can help prevent most of the issues described in
@@ -221,9 +221,9 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021                [Page 4]
+Bruijnzeels, et al.      Expires March 31, 2022                 [Page 4]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
    repository access mechanisms was left as a local policy choice of RP
@@ -277,9 +277,9 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021                [Page 5]
+Bruijnzeels, et al.      Expires March 31, 2022                 [Page 5]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
    o  The publication repository MUST be available using rsync [RFC5781]
@@ -333,9 +333,9 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021                [Page 6]
+Bruijnzeels, et al.      Expires March 31, 2022                 [Page 6]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
 3.2.2.  Measurements
@@ -389,9 +389,9 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021                [Page 7]
+Bruijnzeels, et al.      Expires March 31, 2022                 [Page 7]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
    given CA certificate, because of the id-ad-rpkiNotify SIA extenion,
@@ -445,9 +445,9 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021                [Page 8]
+Bruijnzeels, et al.      Expires March 31, 2022                 [Page 8]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
    o  The publication repository MUST be available using rsync [RFC5781]
@@ -501,9 +501,9 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021                [Page 9]
+Bruijnzeels, et al.      Expires March 31, 2022                 [Page 9]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
    o  RFC8181 The RPKI publication protocol is based rsync URIs, and it
@@ -557,9 +557,9 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021               [Page 10]
+Bruijnzeels, et al.      Expires March 31, 2022                [Page 10]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
 5.2.  Current RRDP Support in Relying Party software
@@ -613,9 +613,9 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021               [Page 11]
+Bruijnzeels, et al.      Expires March 31, 2022                [Page 11]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
    [RFC6480]  Lepinski, M. and S. Kent, "An Infrastructure to Support
@@ -669,9 +669,9 @@ Authors' Addresses
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021               [Page 12]
+Bruijnzeels, et al.      Expires March 31, 2022                [Page 12]
 
-Internet-Draft        RPKI Repository Requirements         February 2021
+Internet-Draft        RPKI Repository Requirements        September 2021
 
 
    George Michaelson
@@ -725,4 +725,4 @@ Internet-Draft        RPKI Repository Requirements         February 2021
 
 
 
-Bruijnzeels, et al.      Expires August 26, 2021               [Page 13]
+Bruijnzeels, et al.      Expires March 31, 2022                [Page 13]
