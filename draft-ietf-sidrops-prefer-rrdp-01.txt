@@ -98,11 +98,11 @@ Table of Contents
    4.  Appendix - Implementation Status  . . . . . . . . . . . . . .   7
      4.1.  Current RRDP Support in Repository Software . . . . . . .   7
      4.2.  Current RRDP Support in Relying Party software  . . . . .   8
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
    7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   9
    8.  Normative References  . . . . . . . . . . . . . . . . . . . .   9
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
 
 
 
@@ -326,9 +326,9 @@ Internet-Draft        RPKI Repository Requirements        September 2021
 3.3.  Phase 2 - All RP software prefers RRDP
 
    Once all Repositories support RRDP we can proceed to make RRDP
-   mandatory to implement for Relying Party software.
-
-
+   mandatory to implement for Relying Party software.  But note that RP
+   software is not prohibited from implementing this support sooner.  At
+   the time of this writing all know RP software supports RRDP, although
 
 
 
@@ -337,6 +337,9 @@ Bruijnzeels, et al.      Expires March 31, 2022                 [Page 6]
 
 Internet-Draft        RPKI Repository Requirements        September 2021
 
+
+   it is not known to the authors whether all of them have RRDP enabled
+   and use it as the preferred protocol.
 
 3.3.1.  Updates to RFC 8182
 
@@ -386,9 +389,6 @@ Internet-Draft        RPKI Repository Requirements        September 2021
 
 
 
-
-
-
 Bruijnzeels, et al.      Expires March 31, 2022                 [Page 7]
 
 Internet-Draft        RPKI Repository Requirements        September 2021
@@ -412,33 +412,33 @@ Internet-Draft        RPKI Repository Requirements        September 2021
 
 4.2.  Current RRDP Support in Relying Party software
 
-   The currently known support for RRDP in Relying Party software is as
-   follows:
+   All current versions of known Relying Party software support RRDP:
 
       +------------------------------+---------+---------+---------+
-      | Relying Party Implementation |   RRDP  | version |  since  |
+      | Relying Party Implementation | support | version |  since  |
       +------------------------------+---------+---------+---------+
       |             FORT             |   yes   |  1.2.0  | 02/2021 |
       |           OctoRPKI           |   yes   |  1.0.0  | 02/2019 |
       |            rcynic            |   yes   |    ?    |    ?    |
-      | RIPE NCC RPKI Validator 2.x  |   yes   |   2.18  | 07/2015 |
-      | RIPE NCC RPKI Validator 3.x  |   yes   |   3.0   | 03/2018 |
       |          Routinator          |   yes   |  0.6.0  | 09/2019 |
-      |         rpki-client          | ongoing |    ?    |    ?    |
+      |         rpki-client          |   yes   |  0.7.0  | 04/2021 |
       |           RPSTIR2            |   yes   |   2.0   | 04/2020 |
       +------------------------------+---------+---------+---------+
 
-   The authors kindly request Relying Party software implementers to let
-   us know in which version of their tool support for RRDP was
-   introduced, and when that version was released.
+   But, support for RRDP does not necessarily mean that it is also
+   enabled and preferred over rsync by default.  The authors kindly
+   request that RP implementors provide the following information:
 
-5.  IANA Considerations
-
-   This document has no IANA actions.
-
-6.  Security Considerations
-
-   TBD
+       +------------------------------+--------+---------+---------+
+       | Relying Party Implementation | prefer | version |  since  |
+       +------------------------------+--------+---------+---------+
+       |             FORT             |  yes   |    ?    |    ?    |
+       |           OctoRPKI           |   ?    |    ?    |    ?    |
+       |            rcynic            |   ?    |    ?    |    ?    |
+       |          Routinator          |  yes   |  0.6.0  | 09/2019 |
+       |         rpki-client          |   ?    |    ?    |    ?    |
+       |           RPSTIR2            |   ?    |    ?    |    ?    |
+       +------------------------------+--------+---------+---------+
 
 
 
@@ -449,6 +449,14 @@ Bruijnzeels, et al.      Expires March 31, 2022                 [Page 8]
 
 Internet-Draft        RPKI Repository Requirements        September 2021
 
+
+5.  IANA Considerations
+
+   This document has no IANA actions.
+
+6.  Security Considerations
+
+   TBD
 
 7.  Acknowledgements
 
@@ -488,14 +496,6 @@ Internet-Draft        RPKI Repository Requirements        September 2021
               DOI 10.17487/RFC8182, July 2017,
               <https://www.rfc-editor.org/info/rfc8182>.
 
-Authors' Addresses
-
-   Tim Bruijnzeels
-   NLnet Labs
-
-   Email: tim@nlnetlabs.nl
-   URI:   https://www.nlnetlabs.nl/
-
 
 
 
@@ -504,6 +504,15 @@ Authors' Addresses
 Bruijnzeels, et al.      Expires March 31, 2022                 [Page 9]
 
 Internet-Draft        RPKI Repository Requirements        September 2021
+
+
+Authors' Addresses
+
+   Tim Bruijnzeels
+   NLnet Labs
+
+   Email: tim@nlnetlabs.nl
+   URI:   https://www.nlnetlabs.nl/
 
 
    Randy Bush
@@ -517,15 +526,6 @@ Internet-Draft        RPKI Repository Requirements        September 2021
 
    Email: ggm@apnic.net
    URI:   http://www.apnic.net
-
-
-
-
-
-
-
-
-
 
 
 

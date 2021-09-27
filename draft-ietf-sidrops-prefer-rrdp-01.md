@@ -240,7 +240,10 @@ we have confidence that we will find these Repositories willing to make changes.
 ## Phase 2 - All RP software prefers RRDP
 
 Once all Repositories support RRDP we can proceed to make RRDP mandatory to
-implement for Relying Party software.
+implement for Relying Party software. But note that RP software is not prohibited
+from implementing this support sooner. At the time of this writing all know
+RP software supports RRDP, although it is not known to the authors whether all
+of them have RRDP enabled and use it as the preferred protocol.
 
 ### Updates to RFC 8182
 
@@ -298,22 +301,29 @@ The currently known support for RRDP for repositories is as follows:
 
 ## Current RRDP Support in Relying Party software
 
-The currently known support for RRDP in Relying Party software is as follows:
+All current versions of known Relying Party software support RRDP:
 
-| Relying Party Implementation | RRDP    | version | since   |
+| Relying Party Implementation | support | version | since   |
 |------------------------------|---------|---------|---------|
 | FORT                         | yes     |  1.2.0  | 02/2021 |
 | OctoRPKI                     | yes     |  1.0.0  | 02/2019 |
 | rcynic                       | yes     |    ?    |    ?    |
-| RIPE NCC RPKI Validator 2.x  | yes     |  2.18   | 07/2015 |
-| RIPE NCC RPKI Validator 3.x  | yes     |  3.0    | 03/2018 |
 | Routinator                   | yes     |  0.6.0  | 09/2019 |
-| rpki-client                  | ongoing |    ?    |    ?    |
+| rpki-client                  | yes     |  0.7.0  | 04/2021 |
 | RPSTIR2                      | yes     |  2.0    | 04/2020 |
 
-The authors kindly request Relying Party software implementers to let us know
-in which version of their tool support for RRDP was introduced, and when that
-version was released.
+But, support for RRDP does not necessarily mean that it is also
+enabled and preferred over rsync by default. The authors kindly
+request that RP implementors provide the following information:
+
+| Relying Party Implementation | prefer  | version | since   |
+|------------------------------|---------|---------|---------|
+| FORT                         | yes     |    ?    |    ?    |
+| OctoRPKI                     |  ?      |    ?    |    ?    |
+| rcynic                       |  ?      |    ?    |    ?    |
+| Routinator                   | yes     |  0.6.0  | 09/2019 |
+| rpki-client                  |  ?      |    ?    |    ?    |
+| RPSTIR2                      |  ?      |    ?    |    ?    |
 
 
 # IANA Considerations

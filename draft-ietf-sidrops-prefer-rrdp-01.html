@@ -630,7 +630,7 @@
 <h1 id="rfc.section.3.3">
 <a href="#rfc.section.3.3">3.3.</a> <a href="#phase-2--all-rp-software-prefers-rrdp" id="phase-2--all-rp-software-prefers-rrdp">Phase 2 - All RP software prefers RRDP</a>
 </h1>
-<p id="rfc.section.3.3.p.1">Once all Repositories support RRDP we can proceed to make RRDP mandatory to implement for Relying Party software.  </p>
+<p id="rfc.section.3.3.p.1">Once all Repositories support RRDP we can proceed to make RRDP mandatory to implement for Relying Party software. But note that RP software is not prohibited from implementing this support sooner. At the time of this writing all know RP software supports RRDP, although it is not known to the authors whether all of them have RRDP enabled and use it as the preferred protocol.  </p>
 <h1 id="rfc.section.3.3.1">
 <a href="#rfc.section.3.3.1">3.3.1.</a> <a href="#updates-to-rfc-8182-1" id="updates-to-rfc-8182-1">Updates to RFC 8182</a>
 </h1>
@@ -692,11 +692,11 @@
 <h1 id="rfc.section.4.2">
 <a href="#rfc.section.4.2">4.2.</a> <a href="#current-rrdp-support-in-relying-party-software" id="current-rrdp-support-in-relying-party-software">Current RRDP Support in Relying Party software</a>
 </h1>
-<p id="rfc.section.4.2.p.1">The currently known support for RRDP in Relying Party software is as follows: </p>
+<p id="rfc.section.4.2.p.1">All current versions of known Relying Party software support RRDP: </p>
 <table cellpadding="3" cellspacing="0" class="tt full center">
 <thead><tr>
 <th class="center">Relying Party Implementation</th>
-<th class="center">RRDP</th>
+<th class="center">support</th>
 <th class="center">version</th>
 <th class="center">since</th>
 </tr></thead>
@@ -720,18 +720,6 @@
 <td class="center">?</td>
 </tr>
 <tr>
-<td class="center">RIPE NCC RPKI Validator 2.x</td>
-<td class="center">yes</td>
-<td class="center">2.18</td>
-<td class="center">07/2015</td>
-</tr>
-<tr>
-<td class="center">RIPE NCC RPKI Validator 3.x</td>
-<td class="center">yes</td>
-<td class="center">3.0</td>
-<td class="center">03/2018</td>
-</tr>
-<tr>
 <td class="center">Routinator</td>
 <td class="center">yes</td>
 <td class="center">0.6.0</td>
@@ -739,9 +727,9 @@
 </tr>
 <tr>
 <td class="center">rpki-client</td>
-<td class="center">ongoing</td>
-<td class="center">?</td>
-<td class="center">?</td>
+<td class="center">yes</td>
+<td class="center">0.7.0</td>
+<td class="center">04/2021</td>
 </tr>
 <tr>
 <td class="center">RPSTIR2</td>
@@ -751,7 +739,53 @@
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.4.2.p.2">The authors kindly request Relying Party software implementers to let us know in which version of their tool support for RRDP was introduced, and when that version was released.  </p>
+<p id="rfc.section.4.2.p.2">But, support for RRDP does not necessarily mean that it is also enabled and preferred over rsync by default. The authors kindly request that RP implementors provide the following information: </p>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<thead><tr>
+<th class="center">Relying Party Implementation</th>
+<th class="center">prefer</th>
+<th class="center">version</th>
+<th class="center">since</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="center">FORT</td>
+<td class="center">yes</td>
+<td class="center">?</td>
+<td class="center">?</td>
+</tr>
+<tr>
+<td class="center">OctoRPKI</td>
+<td class="center">?</td>
+<td class="center">?</td>
+<td class="center">?</td>
+</tr>
+<tr>
+<td class="center">rcynic</td>
+<td class="center">?</td>
+<td class="center">?</td>
+<td class="center">?</td>
+</tr>
+<tr>
+<td class="center">Routinator</td>
+<td class="center">yes</td>
+<td class="center">0.6.0</td>
+<td class="center">09/2019</td>
+</tr>
+<tr>
+<td class="center">rpki-client</td>
+<td class="center">?</td>
+<td class="center">?</td>
+<td class="center">?</td>
+</tr>
+<tr>
+<td class="center">RPSTIR2</td>
+<td class="center">?</td>
+<td class="center">?</td>
+<td class="center">?</td>
+</tr>
+</tbody>
+</table>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>

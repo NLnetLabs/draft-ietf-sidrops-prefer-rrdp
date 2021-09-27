@@ -289,7 +289,10 @@ we have confidence that we will find these Repositories willing to make changes.
 
 <section anchor="phase-2--all-rp-software-prefers-rrdp" title="Phase 2 - All RP software prefers RRDP">
 <t>Once all Repositories support RRDP we can proceed to make RRDP mandatory to
-implement for Relying Party software.
+implement for Relying Party software. But note that RP software is not prohibited
+from implementing this support sooner. At the time of this writing all know
+RP software supports RRDP, although it is not known to the authors whether all
+of them have RRDP enabled and use it as the preferred protocol.
 </t>
 
 <section anchor="updates-to-rfc-8182-1" title="Updates to RFC 8182">
@@ -353,27 +356,38 @@ phase of this document and is not intended to be included in an RFC.
 </section>
 
 <section anchor="current-rrdp-support-in-relying-party-software" title="Current RRDP Support in Relying Party software">
-<t>The currently known support for RRDP in Relying Party software is as follows:
+<t>All current versions of known Relying Party software support RRDP:
 </t>
 <texttable>
 <ttcol align="center">Relying Party Implementation</ttcol>
-<ttcol align="center">RRDP</ttcol>
+<ttcol align="center">support</ttcol>
 <ttcol align="center">version</ttcol>
 <ttcol align="center">since</ttcol>
 
 <c>FORT</c><c>yes</c><c>1.2.0</c><c>02/2021</c>
 <c>OctoRPKI</c><c>yes</c><c>1.0.0</c><c>02/2019</c>
 <c>rcynic</c><c>yes</c><c>?</c><c>?</c>
-<c>RIPE NCC RPKI Validator 2.x</c><c>yes</c><c>2.18</c><c>07/2015</c>
-<c>RIPE NCC RPKI Validator 3.x</c><c>yes</c><c>3.0</c><c>03/2018</c>
 <c>Routinator</c><c>yes</c><c>0.6.0</c><c>09/2019</c>
-<c>rpki-client</c><c>ongoing</c><c>?</c><c>?</c>
+<c>rpki-client</c><c>yes</c><c>0.7.0</c><c>04/2021</c>
 <c>RPSTIR2</c><c>yes</c><c>2.0</c><c>04/2020</c>
 </texttable>
-<t>The authors kindly request Relying Party software implementers to let us know
-in which version of their tool support for RRDP was introduced, and when that
-version was released.
+<t>But, support for RRDP does not necessarily mean that it is also
+enabled and preferred over rsync by default. The authors kindly
+request that RP implementors provide the following information:
 </t>
+<texttable>
+<ttcol align="center">Relying Party Implementation</ttcol>
+<ttcol align="center">prefer</ttcol>
+<ttcol align="center">version</ttcol>
+<ttcol align="center">since</ttcol>
+
+<c>FORT</c><c>yes</c><c>?</c><c>?</c>
+<c>OctoRPKI</c><c>?</c><c>?</c><c>?</c>
+<c>rcynic</c><c>?</c><c>?</c><c>?</c>
+<c>Routinator</c><c>yes</c><c>0.6.0</c><c>09/2019</c>
+<c>rpki-client</c><c>?</c><c>?</c><c>?</c>
+<c>RPSTIR2</c><c>?</c><c>?</c><c>?</c>
+</texttable>
 </section>
 </section>
 
