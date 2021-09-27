@@ -45,11 +45,7 @@ organization = "APNIC"
 This document formulates a plan of a phased transition to a state where
 RPKI repositories and Relying Party software performing RPKI Validation
 will use the RPKI Repository Delta Protocol (RRDP) [@!RFC8182] as the
-only mandatory to implement access protocol.
-
-The first objective is to make RRDP the preferred access protocol, and
-require rsync as a fallback option only. This will greatly reduce the
-operational burden and concerns for RPKI repository operators.
+preferred access protocol, and require rsync as a fallback option only.
 
 In phase 0, today's deployment, RRDP is supported by most, but not all
 Repositories, and most but not all RP software.
@@ -67,13 +63,6 @@ descriptions and updates to RFCs for each of these phases, we may find
 that it will be beneficial to have one or more separate documents for
 these phases, so that it might be more clear to all when the updates
 to RFCs take effect.
-
-Furthermore, this document currently includes an early discussion of
-a future objective, which would be to change the RPKI standards such
-that names in RPKI objects are no longer tightly coupled to rsync. By
-using transport independent names and validation, we will obtain the
-agility needed to phase out rsync altogether and/or introduce other
-future access protocols.
 
 {mainmatter}
 
@@ -273,22 +262,6 @@ NEW:
   use alternative repository access mechanisms, if object retrieval through
   this protocol is unsuccessful.
 
-### Rsync URIs as object identifiers
-
-Rsync URIs are used in the RPKI to name objects and hierarchies, and they
-are as such very useful when doing RPKI object validation, as well as for
-error reporting on validation issues.
-
-Note that RRDP includes rsync URIs in its structure. See section 3.5 of [@!RFC8182]. Theoretically, RRDP servers could include any rsync URI.
-However, Relying Party software knows which RRDP server to is expected
-to include the rsync URIs for RPKI objects issued under any given CA
-certificate, because of the id-ad-rpkiNotify SIA extenion, see section
-3.2 of [@!RFC8182].
-
-Thus, objects retrieved through RRDP can be mapped easily to files and
-URIs, similar to as though rsync would have been used to retrieve them.
-
-
 ### Measurements
 
 Although the tools may support RRDP, users will still need to install updated
@@ -297,90 +270,7 @@ measure this transition by observing access to their RRDP and rsync repositories
 respectively.
 
 But even after new versions have been available, it is expected that there will
-be long, low volume, tail of users who did not upgrade and still depend on rsync.
-
-It is hard to quantify here now, what would be an acceptable moment to conclude
-that it's safe to move to the next phase and make rsync optional. A parallel to
-the so-called DNS Flag Day comes to mind.
-
-# Future Objective: Remove the dependency on rsync
-
-Note that, while we discuss this here, we would probably do well to separate
-this section into a separate follow-up document.
-
-## Phase 3 - RPKI repositories support RRDP, and optionally rsync
-
-The end goal of this phase would be that there will be no operational
-dependencies on rsync for Repositories, although they MAY still choose
-to operate rsync at a best effort basis.
-
-The most pragmatic way to deal with rsync URIs in the RPKI would be
-to continue to use them as namespaces, but no longer require that rsync
-is available. Much like how https based namespaces are used in XML.
-
-### Updates to RFC 6481
-
-From this phase onwards these updates are applied to section 3 of [@!RFC6481] as
-it was updated during Phase 2 described above:
-
-OLD:
-
-- The publication repository MUST be available using the RPKI
-  Repository Delta Protocol [@!RFC8182]. The RRDP server SHOULD
-  be hosted on a highly available platform.
-- The publication repository MUST be available using rsync
-  [@!RFC5781] [RSYNC]. The rsync server SHOULD be hosted on a
-  highly available platform.
-- Support of additional retrieval mechanisms is the choice of the repository
-  operator. The supported retrieval mechanisms MUST be consistent with the
-  accessMethod element value(s) specified in the SIA of the associated CA or
-  EE certificate.
-
-NEW:
-
-- The publication repository MUST be available using the RPKI
-  Repository Delta Protocol [@!RFC8182]. The RRDP server SHOULD
-  be hosted on a highly available platform.
-- The publication repository MAY be available using rsync [@!RFC5781] [RSYNC].
-- Support of additional retrieval mechanisms is the choice of the repository
-  operator. The supported retrieval mechanisms MUST be consistent with the
-  accessMethod element value(s) specified in the SIA of the associated CA or
-  EE certificate.
-
-Note that this means that RP software is still required to try to fall back
-to rsync if RRDP is unavailable, but it may find that the rsync repository is
-not available.
-
-## Transport agnostic RPKI object names
-
-We could develop a new naming scheme for RPKI objects. Perhaps
-based on Universal Resource Names ([@?RFC8141]). Doing so, would allow us to
-use names which are independent from retrieval mechanisms, and thus they could
-be less confusing in some regards, and provide more agility with regards to
-future changes in those mechanisms. However, this would require that many updates
-are made to existing RFCs. An incomplete list:
-
-- RFC6487 New names would have be allowed in the SIA, or perhaps an X509 extension,
-  could be used. But, the latter would have a direct impact on the deployability
-  of updated CA certificates - RP software would reject these certificates if
-  the extension is marked as critical by the CA and not understood by the RP.
-- RFC6492 New names (in whatever form) would need to be included certificate sign
-  requests sent to a parent CA. The parent CA will need to include a 'cert_url',
-  indicating where an issued certificate is published, in a different format.
-- RFC8181 The RPKI publication protocol is based rsync URIs, and it assumes that
-  publishers have access to a specific directory in rsync space. This would need
-  to be changed.
-- RFC8183 This RFC defines the identity exchange between an RPKI CA and Publication
-  Server. The server's response includes an 'sia_base', in the form of an rsync
-  directory, under which a CA is supposed to name its objects.
-- RFC8182 The RRDP protocol uses rsync URIs for compatibility with rsync as a
-  retrieval method. This would need to be updated.
-
-Obviously this needs more discussion.
-
-The exercise would not be trivial. But, arguably doing this work will not become
-easier by postponing it, and once done would leave the RPKI better positioned
-to use alternative access methods in future as well.
+be a long, low volume, tail of users who did not upgrade and still depend on rsync.
 
 
 # Appendix - Implementation Status

@@ -385,21 +385,14 @@
 <link href="#rfc.section.3.2.2" rel="Chapter" title="3.2.2 Measurements">
 <link href="#rfc.section.3.3" rel="Chapter" title="3.3 Phase 2 - All RP software prefers RRDP">
 <link href="#rfc.section.3.3.1" rel="Chapter" title="3.3.1 Updates to RFC 8182">
-<link href="#rfc.section.3.3.2" rel="Chapter" title="3.3.2 Rsync URIs as object identifiers">
-<link href="#rfc.section.3.3.3" rel="Chapter" title="3.3.3 Measurements">
-<link href="#rfc.section.4" rel="Chapter" title="4 Future Objective: Remove the dependency on rsync">
-<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Phase 3 - RPKI repositories support RRDP, and optionally rsync">
-<link href="#rfc.section.4.1.1" rel="Chapter" title="4.1.1 Updates to RFC 6481">
-<link href="#rfc.section.4.2" rel="Chapter" title="4.2 Transport agnostic RPKI object names">
-<link href="#rfc.section.5" rel="Chapter" title="5 Appendix - Implementation Status">
-<link href="#rfc.section.5.1" rel="Chapter" title="5.1 Current RRDP Support in Repository Software">
-<link href="#rfc.section.5.2" rel="Chapter" title="5.2 Current RRDP Support in Relying Party software">
-<link href="#rfc.section.6" rel="Chapter" title="6 IANA Considerations">
-<link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations">
-<link href="#rfc.section.8" rel="Chapter" title="8 Acknowledgements">
-<link href="#rfc.references" rel="Chapter" title="9 References">
-<link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References">
-<link href="#rfc.references.2" rel="Chapter" title="9.2 Informative References">
+<link href="#rfc.section.3.3.2" rel="Chapter" title="3.3.2 Measurements">
+<link href="#rfc.section.4" rel="Chapter" title="4 Appendix - Implementation Status">
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Current RRDP Support in Repository Software">
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 Current RRDP Support in Relying Party software">
+<link href="#rfc.section.5" rel="Chapter" title="5 IANA Considerations">
+<link href="#rfc.section.6" rel="Chapter" title="6 Security Considerations">
+<link href="#rfc.section.7" rel="Chapter" title="7 Acknowledgements">
+<link href="#rfc.references" rel="Chapter" title="8 Normative References">
 <link href="#rfc.authors" rel="Chapter">
 
 
@@ -456,13 +449,11 @@
   <span class="filename">draft-ietf-sidrops-prefer-rrdp-01</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>This document formulates a plan of a phased transition to a state where RPKI repositories and Relying Party software performing RPKI Validation will use the RPKI Repository Delta Protocol (RRDP) <a href="#RFC8182" class="xref">[RFC8182]</a> as the only mandatory to implement access protocol.  </p>
-<p>The first objective is to make RRDP the preferred access protocol, and require rsync as a fallback option only. This will greatly reduce the operational burden and concerns for RPKI repository operators.  </p>
+<p>This document formulates a plan of a phased transition to a state where RPKI repositories and Relying Party software performing RPKI Validation will use the RPKI Repository Delta Protocol (RRDP) <a href="#RFC8182" class="xref">[RFC8182]</a> as the preferred access protocol, and require rsync as a fallback option only.  </p>
 <p>In phase 0, today's deployment, RRDP is supported by most, but not all Repositories, and most but not all RP software.  </p>
 <p>In the proposed phase 1 RRDP will become mandatory to implement for Repositories, in addition to rsync. This phase can start as soon as this document is published.  </p>
 <p>Once the proposed updates are implemented by all Repositories phase 2 will start. In this phase RRDP will become mandatory to implement for all RP software, and rsync will be required as a fallback option only.  </p>
 <p>It should be noted that although this document currently includes descriptions and updates to RFCs for each of these phases, we may find that it will be beneficial to have one or more separate documents for these phases, so that it might be more clear to all when the updates to RFCs take effect.  </p>
-<p>Furthermore, this document currently includes an early discussion of a future objective, which would be to change the RPKI standards such that names in RPKI objects are no longer tightly coupled to rsync. By using transport independent names and validation, we will obtain the agility needed to phase out rsync altogether and/or introduce other future access protocols.  </p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
@@ -499,37 +490,23 @@
 </li>
 <ul><li>3.3.1.   <a href="#rfc.section.3.3.1">Updates to RFC 8182</a>
 </li>
-<li>3.3.2.   <a href="#rfc.section.3.3.2">Rsync URIs as object identifiers</a>
+<li>3.3.2.   <a href="#rfc.section.3.3.2">Measurements</a>
 </li>
-<li>3.3.3.   <a href="#rfc.section.3.3.3">Measurements</a>
+</ul></ul><li>4.   <a href="#rfc.section.4">Appendix - Implementation Status</a>
 </li>
-</ul></ul><li>4.   <a href="#rfc.section.4">Future Objective: Remove the dependency on rsync</a>
+<ul><li>4.1.   <a href="#rfc.section.4.1">Current RRDP Support in Repository Software</a>
 </li>
-<ul><li>4.1.   <a href="#rfc.section.4.1">Phase 3 - RPKI repositories support RRDP, and optionally rsync</a>
+<li>4.2.   <a href="#rfc.section.4.2">Current RRDP Support in Relying Party software</a>
 </li>
-<ul><li>4.1.1.   <a href="#rfc.section.4.1.1">Updates to RFC 6481</a>
+</ul><li>5.   <a href="#rfc.section.5">IANA Considerations</a>
 </li>
-</ul><li>4.2.   <a href="#rfc.section.4.2">Transport agnostic RPKI object names</a>
+<li>6.   <a href="#rfc.section.6">Security Considerations</a>
 </li>
-</ul><li>5.   <a href="#rfc.section.5">Appendix - Implementation Status</a>
+<li>7.   <a href="#rfc.section.7">Acknowledgements</a>
 </li>
-<ul><li>5.1.   <a href="#rfc.section.5.1">Current RRDP Support in Repository Software</a>
+<li>8.   <a href="#rfc.references">Normative References</a>
 </li>
-<li>5.2.   <a href="#rfc.section.5.2">Current RRDP Support in Relying Party software</a>
-</li>
-</ul><li>6.   <a href="#rfc.section.6">IANA Considerations</a>
-</li>
-<li>7.   <a href="#rfc.section.7">Security Considerations</a>
-</li>
-<li>8.   <a href="#rfc.section.8">Acknowledgements</a>
-</li>
-<li>9.   <a href="#rfc.references">References</a>
-</li>
-<ul><li>9.1.   <a href="#rfc.references.1">Normative References</a>
-</li>
-<li>9.2.   <a href="#rfc.references.2">Informative References</a>
-</li>
-</ul><li><a href="#rfc.authors">Authors' Addresses</a>
+<li><a href="#rfc.authors">Authors' Addresses</a>
 </li>
 
 
@@ -663,76 +640,18 @@
 <p id="rfc.section.3.3.1.p.4">Relying Parties MUST NOT attempt to fetch objects using alternate access mechanisms, if object retrieval through this protocol is successful.  </p>
 <p id="rfc.section.3.3.1.p.5">However, as stipulated in section 3.4.5, Relying Parties MUST attempt to use alternative repository access mechanisms, if object retrieval through this protocol is unsuccessful.  </p>
 <h1 id="rfc.section.3.3.2">
-<a href="#rfc.section.3.3.2">3.3.2.</a> <a href="#rsync-uris-as-object-identifiers" id="rsync-uris-as-object-identifiers">Rsync URIs as object identifiers</a>
+<a href="#rfc.section.3.3.2">3.3.2.</a> <a href="#measurements-1" id="measurements-1">Measurements</a>
 </h1>
-<p id="rfc.section.3.3.2.p.1">Rsync URIs are used in the RPKI to name objects and hierarchies, and they are as such very useful when doing RPKI object validation, as well as for error reporting on validation issues.  </p>
-<p id="rfc.section.3.3.2.p.2">Note that RRDP includes rsync URIs in its structure. See section 3.5 of <a href="#RFC8182" class="xref">[RFC8182]</a>. Theoretically, RRDP servers could include any rsync URI.  However, Relying Party software knows which RRDP server to is expected to include the rsync URIs for RPKI objects issued under any given CA certificate, because of the id-ad-rpkiNotify SIA extenion, see section 3.2 of <a href="#RFC8182" class="xref">[RFC8182]</a>.  </p>
-<p id="rfc.section.3.3.2.p.3">Thus, objects retrieved through RRDP can be mapped easily to files and URIs, similar to as though rsync would have been used to retrieve them.  </p>
-<h1 id="rfc.section.3.3.3">
-<a href="#rfc.section.3.3.3">3.3.3.</a> <a href="#measurements-1" id="measurements-1">Measurements</a>
-</h1>
-<p id="rfc.section.3.3.3.p.1">Although the tools may support RRDP, users will still need to install updated versions of these tools in their infrastructure. Any Repository operator can measure this transition by observing access to their RRDP and rsync repositories respectively.  </p>
-<p id="rfc.section.3.3.3.p.2">But even after new versions have been available, it is expected that there will be long, low volume, tail of users who did not upgrade and still depend on rsync.  </p>
-<p id="rfc.section.3.3.3.p.3">It is hard to quantify here now, what would be an acceptable moment to conclude that it's safe to move to the next phase and make rsync optional. A parallel to the so-called DNS Flag Day comes to mind.  </p>
+<p id="rfc.section.3.3.2.p.1">Although the tools may support RRDP, users will still need to install updated versions of these tools in their infrastructure. Any Repository operator can measure this transition by observing access to their RRDP and rsync repositories respectively.  </p>
+<p id="rfc.section.3.3.2.p.2">But even after new versions have been available, it is expected that there will be a long, low volume, tail of users who did not upgrade and still depend on rsync.  </p>
 <h1 id="rfc.section.4">
-<a href="#rfc.section.4">4.</a> <a href="#future-objective-remove-the-dependency-on-rsync" id="future-objective-remove-the-dependency-on-rsync">Future Objective: Remove the dependency on rsync</a>
+<a href="#rfc.section.4">4.</a> <a href="#appendix--implementation-status" id="appendix--implementation-status">Appendix - Implementation Status</a>
 </h1>
-<p id="rfc.section.4.p.1">Note that, while we discuss this here, we would probably do well to separate this section into a separate follow-up document.  </p>
+<p id="rfc.section.4.p.1">Note that this section is included for tracking purposes during the discussion phase of this document and is not intended to be included in an RFC.  </p>
 <h1 id="rfc.section.4.1">
-<a href="#rfc.section.4.1">4.1.</a> <a href="#phase-3--rpki-repositories-support-rrdp-and-optionally-rsync" id="phase-3--rpki-repositories-support-rrdp-and-optionally-rsync">Phase 3 - RPKI repositories support RRDP, and optionally rsync</a>
+<a href="#rfc.section.4.1">4.1.</a> <a href="#current-rrdp-support-in-repository-software" id="current-rrdp-support-in-repository-software">Current RRDP Support in Repository Software</a>
 </h1>
-<p id="rfc.section.4.1.p.1">The end goal of this phase would be that there will be no operational dependencies on rsync for Repositories, although they MAY still choose to operate rsync at a best effort basis.  </p>
-<p id="rfc.section.4.1.p.2">The most pragmatic way to deal with rsync URIs in the RPKI would be to continue to use them as namespaces, but no longer require that rsync is available. Much like how https based namespaces are used in XML.  </p>
-<h1 id="rfc.section.4.1.1">
-<a href="#rfc.section.4.1.1">4.1.1.</a> <a href="#updates-to-rfc-6481-2" id="updates-to-rfc-6481-2">Updates to RFC 6481</a>
-</h1>
-<p id="rfc.section.4.1.1.p.1">From this phase onwards these updates are applied to section 3 of <a href="#RFC6481" class="xref">[RFC6481]</a> as it was updated during Phase 2 described above: </p>
-<p id="rfc.section.4.1.1.p.2">OLD: </p>
-<p></p>
-
-<ul>
-<li>The publication repository MUST be available using the RPKI Repository Delta Protocol <a href="#RFC8182" class="xref">[RFC8182]</a>. The RRDP server SHOULD be hosted on a highly available platform.</li>
-<li>The publication repository MUST be available using rsync <a href="#RFC5781" class="xref">[RFC5781]</a> [RSYNC]. The rsync server SHOULD be hosted on a highly available platform.</li>
-<li>Support of additional retrieval mechanisms is the choice of the repository operator. The supported retrieval mechanisms MUST be consistent with the accessMethod element value(s) specified in the SIA of the associated CA or EE certificate.</li>
-</ul>
-
-<p> </p>
-<p id="rfc.section.4.1.1.p.4">NEW: </p>
-<p></p>
-
-<ul>
-<li>The publication repository MUST be available using the RPKI Repository Delta Protocol <a href="#RFC8182" class="xref">[RFC8182]</a>. The RRDP server SHOULD be hosted on a highly available platform.</li>
-<li>The publication repository MAY be available using rsync <a href="#RFC5781" class="xref">[RFC5781]</a> [RSYNC].</li>
-<li>Support of additional retrieval mechanisms is the choice of the repository operator. The supported retrieval mechanisms MUST be consistent with the accessMethod element value(s) specified in the SIA of the associated CA or EE certificate.</li>
-</ul>
-
-<p> </p>
-<p id="rfc.section.4.1.1.p.6">Note that this means that RP software is still required to try to fall back to rsync if RRDP is unavailable, but it may find that the rsync repository is not available.  </p>
-<h1 id="rfc.section.4.2">
-<a href="#rfc.section.4.2">4.2.</a> <a href="#transport-agnostic-rpki-object-names" id="transport-agnostic-rpki-object-names">Transport agnostic RPKI object names</a>
-</h1>
-<p id="rfc.section.4.2.p.1">We could develop a new naming scheme for RPKI objects. Perhaps based on Universal Resource Names (<a href="#RFC8141" class="xref">[RFC8141]</a>). Doing so, would allow us to use names which are independent from retrieval mechanisms, and thus they could be less confusing in some regards, and provide more agility with regards to future changes in those mechanisms. However, this would require that many updates are made to existing RFCs. An incomplete list: </p>
-<p></p>
-
-<ul>
-<li>RFC6487 New names would have be allowed in the SIA, or perhaps an X509 extension, could be used. But, the latter would have a direct impact on the deployability of updated CA certificates - RP software would reject these certificates if the extension is marked as critical by the CA and not understood by the RP.</li>
-<li>RFC6492 New names (in whatever form) would need to be included certificate sign requests sent to a parent CA. The parent CA will need to include a 'cert_url', indicating where an issued certificate is published, in a different format.</li>
-<li>RFC8181 The RPKI publication protocol is based rsync URIs, and it assumes that publishers have access to a specific directory in rsync space. This would need to be changed.</li>
-<li>RFC8183 This RFC defines the identity exchange between an RPKI CA and Publication Server. The server's response includes an 'sia_base', in the form of an rsync directory, under which a CA is supposed to name its objects.</li>
-<li>RFC8182 The RRDP protocol uses rsync URIs for compatibility with rsync as a retrieval method. This would need to be updated.</li>
-</ul>
-
-<p> </p>
-<p id="rfc.section.4.2.p.3">Obviously this needs more discussion.  </p>
-<p id="rfc.section.4.2.p.4">The exercise would not be trivial. But, arguably doing this work will not become easier by postponing it, and once done would leave the RPKI better positioned to use alternative access methods in future as well.  </p>
-<h1 id="rfc.section.5">
-<a href="#rfc.section.5">5.</a> <a href="#appendix--implementation-status" id="appendix--implementation-status">Appendix - Implementation Status</a>
-</h1>
-<p id="rfc.section.5.p.1">Note that this section is included for tracking purposes during the discussion phase of this document and is not intended to be included in an RFC.  </p>
-<h1 id="rfc.section.5.1">
-<a href="#rfc.section.5.1">5.1.</a> <a href="#current-rrdp-support-in-repository-software" id="current-rrdp-support-in-repository-software">Current RRDP Support in Repository Software</a>
-</h1>
-<p id="rfc.section.5.1.p.1">The currently known support for RRDP for repositories is as follows: </p>
+<p id="rfc.section.4.1.p.1">The currently known support for RRDP for repositories is as follows: </p>
 <table cellpadding="3" cellspacing="0" class="tt full center">
 <thead><tr>
 <th class="center">Repository Implementation</th>
@@ -769,11 +688,11 @@
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.5.1.p.2">(1) in use at various National Internet Registries, as well as other resource holders under RIRs.  (2) not all organizations using this software have upgraded to using RRDP.  </p>
-<h1 id="rfc.section.5.2">
-<a href="#rfc.section.5.2">5.2.</a> <a href="#current-rrdp-support-in-relying-party-software" id="current-rrdp-support-in-relying-party-software">Current RRDP Support in Relying Party software</a>
+<p id="rfc.section.4.1.p.2">(1) in use at various National Internet Registries, as well as other resource holders under RIRs.  (2) not all organizations using this software have upgraded to using RRDP.  </p>
+<h1 id="rfc.section.4.2">
+<a href="#rfc.section.4.2">4.2.</a> <a href="#current-rrdp-support-in-relying-party-software" id="current-rrdp-support-in-relying-party-software">Current RRDP Support in Relying Party software</a>
 </h1>
-<p id="rfc.section.5.2.p.1">The currently known support for RRDP in Relying Party software is as follows: </p>
+<p id="rfc.section.4.2.p.1">The currently known support for RRDP in Relying Party software is as follows: </p>
 <table cellpadding="3" cellspacing="0" class="tt full center">
 <thead><tr>
 <th class="center">Relying Party Implementation</th>
@@ -832,23 +751,21 @@
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.5.2.p.2">The authors kindly request Relying Party software implementers to let us know in which version of their tool support for RRDP was introduced, and when that version was released.  </p>
-<h1 id="rfc.section.6">
-<a href="#rfc.section.6">6.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
+<p id="rfc.section.4.2.p.2">The authors kindly request Relying Party software implementers to let us know in which version of their tool support for RRDP was introduced, and when that version was released.  </p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
-<p id="rfc.section.6.p.1">This document has no IANA actions.  </p>
+<p id="rfc.section.5.p.1">This document has no IANA actions.  </p>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
+</h1>
+<p id="rfc.section.6.p.1">TBD </p>
 <h1 id="rfc.section.7">
-<a href="#rfc.section.7">7.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
+<a href="#rfc.section.7">7.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
 </h1>
 <p id="rfc.section.7.p.1">TBD </p>
-<h1 id="rfc.section.8">
-<a href="#rfc.section.8">8.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
-</h1>
-<p id="rfc.section.8.p.1">TBD </p>
 <h1 id="rfc.references">
-<a href="#rfc.references">9.</a> References</h1>
-<h1 id="rfc.references.1">
-<a href="#rfc.references.1">9.1.</a> Normative References</h1>
+<a href="#rfc.references">8.</a> Normative References</h1>
 <table><tbody>
 <tr>
 <td class="reference"><b id="RFC2119">[RFC2119]</b></td>
@@ -886,13 +803,6 @@
 <a>Bruijnzeels, T.</a>, <a>Muravskiy, O.</a>, <a>Weber, B.</a> and <a>R. Austein</a>, "<a href="https://tools.ietf.org/html/rfc8182">The RPKI Repository Delta Protocol (RRDP)</a>", RFC 8182, DOI 10.17487/RFC8182, July 2017.</td>
 </tr>
 </tbody></table>
-<h1 id="rfc.references.2">
-<a href="#rfc.references.2">9.2.</a> Informative References</h1>
-<table><tbody><tr>
-<td class="reference"><b id="RFC8141">[RFC8141]</b></td>
-<td class="top">
-<a>Saint-Andre, P.</a> and <a>J. Klensin</a>, "<a href="https://tools.ietf.org/html/rfc8141">Uniform Resource Names (URNs)</a>", RFC 8141, DOI 10.17487/RFC8141, April 2017.</td>
-</tr></tbody></table>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
