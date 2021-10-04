@@ -57,7 +57,7 @@
 <uri>http://www.apnic.net</uri>
 </address>
 </author>
-<date year="2021" month="September" day="27"/>
+<date year="2021" month="October" day="4"/>
 
 <area>Internet</area>
 <workgroup></workgroup>
@@ -76,9 +76,10 @@ Repositories, and most but not all RP software.
 Repositories, in addition to rsync. This phase can start as soon as
 this document is published.
 </t>
-<t>Once the proposed updates are implemented by all Repositories phase 2
-will start. In this phase RRDP will become mandatory to implement for
-all RP software, and rsync will be required as a fallback option only.
+<t>Phase 2 will start once the proposed updates are implemented by all
+compliant Repositories. In this phase RRDP will become mandatory to
+implement for all compliant RP software, and rsync will be required
+as a fallback option only.
 </t>
 <t>It should be noted that although this document currently includes
 descriptions and updates to RFCs for each of these phases, we may find
@@ -116,18 +117,17 @@ issues observed with it motivated the design of RRDP, e.g.:
 <list style="symbols">
 <t>rsync is CPU and memory heavy on the server side, and easy to DoS</t>
 <t>rsync library support is lacking, complicating RP efficiency and error logging</t>
-<t>we cannot ensure that RPs get atomic sets of updated objects</t>
 </list>
 </t>
 <t>RRDP was designed to leverage HTTPS CDN infrastructure to provide RPKI Repository
 content in a resilient way, while reducing the load on the Repository server. It
-supports that updates are published as atomic deltas, which can help prevent
-most of the issues described in section 6 of <xref target="RFC6486"/>.
+supports updates being published as atomic deltas, which can help prevent most
+of the issues described in section 6 of <xref target="RFC6486"/>.
 </t>
 <t>For a longer discussion please see section 1 of <xref target="RFC8182"/>.
 </t>
 <t>In conclusion: we believe that while RRDP is not perfect, and we may indeed
-need future work to improve on it, it is an improvement over using rsync in the
+need future work to improve it, it is an improvement over using rsync in the
 context of RPKI. Therefore, this document outlines a transition plan where RRDP
 becomes mandatory to implement, and the operational dependency on rsync is
 reduced to that of a fallback option.
@@ -158,77 +158,59 @@ more detail below.
 
 <section anchor="phase-0--rpki-repositories-support-rsync-and-optionally-rrdp" title="Phase 0 - RPKI repositories support rsync, and optionally RRDP">
 <t>This is the situation at the time of writing this document. Relying Parties can
-prefer RRDP over rsync today, but they need to support rsync until all RPKI
-repositories support RRDP. Therefore all repositories should support RRDP at
+prefer RRDP over rsync today. Therefore all repositories should support RRDP at
 their earliest convenience.
 </t>
 
 <section anchor="updates-to-rfc-8182" title="Updates to RFC 8182">
-<t>Repositories which support RRDP MUST ensure that RRDP resources are available
-to Relying Parties (section 3.3 of <xref target="RFC8182"/>). Furthermore, the RRDP repository
-MUST include all current repository objects. Because of this the choice of
-falling back to alternative repository access mechanisms was left as a local
-policy choice of RP software.
+<t>Section 3.4.5 of <xref target="RFC8182"/> has the following on &quot;Considerations Regarding
+Operational Failures in RRDP&quot;:
 </t>
-<t>However, following discussions on this subject it has become clear that there is
-a preference to instruct RP software to make use of all possible data sources.
-The main motivation being that because of RPKI object security using a secondary
-source of data can never lead to a worse outcome in terms of validation.
-</t>
-<t>The following update is therefore applicable to section 3.4.5 &quot;Considerations
-Regarding Operational Failures in RRDP&quot; of <xref target="RFC8182"/>:
-</t>
-<t>OLD:
-   Relying Parties could attempt to use alternative repository access
+<t>Relying Parties could attempt to use alternative repository access
    mechanisms, if they are available, according to the accessMethod
    element value(s) specified in the SIA of the associated certificate
    (see Section 4.8.8 of [RFC6487]).
 </t>
-<t>NEW:
-   Relying Parties MUST attempt to use alternative repository access
+<t>The use of the lower case 'could' in this sentence has led some older
+versions of RP implementations to conclude that any fallback from RRDP
+to rsync as an alternative access mechanism is a local choice. However,
+following discussions on this subject it has become clear that there is
+a preference to instruct RP software to make use of all possible data
+sources. The main motivation being that because of RPKI object security
+using a secondary source of data can never lead to a worse outcome in
+terms of validation.
+</t>
+<t>Per this document text mentioned above is replaced by the following:
+</t>
+<t>Relying Parties MUST attempt to use alternative repository access
    mechanisms, if they are available, according to the accessMethod
    element value(s) specified in the SIA of the associated certificate
    (see Section 4.8.8 of [RFC6487]).
+</t>
+<t>Note that there is a risk that the rsync repository, as the
+   alternative access mechanism, becomes overloaded in case all
+   Relying Parties fall back to it at roughly the same time due
+   to an issue with RRDP. Therefore it is RECOMMENDED that Relying
+   Parties use a retry strategy and/or random jitter time before
+   falling back to rsync. But, the fallback to rsync MUST NOT
+   be postponed for more than 1 hour.
 </t>
 </section>
 
 <section anchor="updates-to-rfc-6481" title="Updates to RFC 6481">
-<t>As noted above section 3.3 of <xref target="RFC8182"/> already stipulates that RRDP
-files MUST be made available by repositories which support RRDP. In other
-words the RRDP service must be treated as a critical service wherever it
-is supported.
+<t>Section 3.3 of <xref target="RFC8182"/> stipulates that RRDP files MUST be made
+available by repositories which support RRDP. In other words <xref target="RFC8182"/>
+expects that RRDP repository availability is treated as a critical
+service wherever it is supported.
 </t>
-<t>During this phase the updates are applied to section 3 of <xref target="RFC6481"/>, to
-make this abundantly clear:
-</t>
-<t>OLD:
-</t>
-<t>
-<list style="symbols">
-<t>The publication repository SHOULD be hosted on a highly
-available service and high-capacity publication platform.</t>
-<t>The publication repository MUST be available using rsync
-<xref target="RFC5781"/> [RSYNC]. Support of additional retrieval mechanisms
-is the choice of the repository operator.  The supported
-retrieval mechanisms MUST be consistent with the accessMethod
-element value(s) specified in the SIA of the associated CA or
-EE certificate.</t>
-</list>
-</t>
-<t>NEW:
+<t>Per this document the following bullet point is added to the
+considerations listed in in section 3 of <xref target="RFC6481"/>:
 </t>
 <t>
 <list style="symbols">
 <t>The publication repository MAY be available using the RPKI
 Repository Delta Protocol <xref target="RFC8182"/>. If RPDP is provided,
 it SHOULD be hosted on a highly available platform.</t>
-<t>The publication repository MUST be available using rsync
-<xref target="RFC5781"/> [RSYNC]. The rsync server SHOULD be hosted on a
-highly available platform.</t>
-<t>Support of additional retrieval mechanisms is the choice of the repository
-operator. The supported retrieval mechanisms MUST be consistent with the
-accessMethod element value(s) specified in the SIA of the associated CA or
-EE certificate.</t>
 </list>
 </t>
 </section>
@@ -241,36 +223,15 @@ in as far as they don't support RRDP already.
 </t>
 
 <section anchor="updates-to-rfc-6481-1" title="Updates to RFC 6481">
-<t>During this phase the updates are applied to section 3 of <xref target="RFC6481"/>.
-</t>
-<t>OLD:
-</t>
-<t>
-<list style="symbols">
-<t>The publication repository SHOULD be hosted on a highly
-available service and high-capacity publication platform.</t>
-<t>The publication repository MUST be available using rsync
-<xref target="RFC5781"/> [RSYNC]. Support of additional retrieval mechanisms
-is the choice of the repository operator.  The supported
-retrieval mechanisms MUST be consistent with the accessMethod
-element value(s) specified in the SIA of the associated CA or
-EE certificate.</t>
-</list>
-</t>
-<t>NEW:
+<t>In this phase the bullet point update to section 3 of <xref target="RFC6481"/>
+mentioned above, where it was said the publication repository MAY
+be available using the RPKI Repository Delta Protocol is replaced by:
 </t>
 <t>
 <list style="symbols">
 <t>The publication repository MUST be available using the RPKI
 Repository Delta Protocol <xref target="RFC8182"/>. The RRDP server SHOULD
 be hosted on a highly available platform.</t>
-<t>The publication repository MUST be available using rsync
-<xref target="RFC5781"/> [RSYNC]. The rsync server SHOULD be hosted on a
-highly available platform.</t>
-<t>Support of additional retrieval mechanisms is the choice of the repository
-operator. The supported retrieval mechanisms MUST be consistent with the
-accessMethod element value(s) specified in the SIA of the associated CA or
-EE certificate.</t>
 </list>
 </t>
 </section>
@@ -296,23 +257,19 @@ of them have RRDP enabled and use it as the preferred protocol.
 </t>
 
 <section anchor="updates-to-rfc-8182-1" title="Updates to RFC 8182">
-<t>From this phase onwards the updates are applied to section 3.4.1 of <xref target="RFC8182"/>.
+<t>From this phase onwards the first paragraph of section 3.4.1 of <xref target="RFC8182"/>
+is replaced by the following:
 </t>
-<t>OLD:
-  When a Relying Party performs RPKI validation and learns about a
-  valid certificate with an SIA entry for the RRDP protocol, it SHOULD
-  use this protocol as follows.
-</t>
-<t>NEW:
-  When a Relying Party performs RPKI validation and learns about a
+<t>When a Relying Party performs RPKI validation and learns about a
   valid certificate with an SIA entry for the RRDP protocol, it MUST
   use this protocol with preference.
 </t>
-<t>Relying Parties MUST NOT attempt to fetch objects using alternate access mechanisms, if object retrieval through this protocol is successful.
+<t>Relying Parties MUST NOT attempt to fetch objects using alternate access
+  mechanisms, if object retrieval through this protocol is successful.
 </t>
 <t>However, as stipulated in section 3.4.5, Relying Parties MUST attempt to
   use alternative repository access mechanisms, if object retrieval through
-  this protocol is unsuccessful.
+  RRDP is unsuccessful.
 </t>
 </section>
 
@@ -364,9 +321,9 @@ phase of this document and is not intended to be included in an RFC.
 <ttcol align="center">version</ttcol>
 <ttcol align="center">since</ttcol>
 
+<c>DRL</c><c>yes</c><c>?</c><c>?</c>
 <c>FORT</c><c>yes</c><c>1.2.0</c><c>02/2021</c>
 <c>OctoRPKI</c><c>yes</c><c>1.0.0</c><c>02/2019</c>
-<c>rcynic</c><c>yes</c><c>?</c><c>?</c>
 <c>Routinator</c><c>yes</c><c>0.6.0</c><c>09/2019</c>
 <c>rpki-client</c><c>yes</c><c>0.7.0</c><c>04/2021</c>
 <c>RPSTIR2</c><c>yes</c><c>2.0</c><c>04/2020</c>
@@ -381,9 +338,9 @@ request that RP implementors provide the following information:
 <ttcol align="center">version</ttcol>
 <ttcol align="center">since</ttcol>
 
+<c>DRL</c><c>?</c><c>?</c><c>?</c>
 <c>FORT</c><c>yes</c><c>?</c><c>?</c>
 <c>OctoRPKI</c><c>?</c><c>?</c><c>?</c>
-<c>rcynic</c><c>?</c><c>?</c><c>?</c>
 <c>Routinator</c><c>yes</c><c>0.6.0</c><c>09/2019</c>
 <c>rpki-client</c><c>?</c><c>?</c><c>?</c>
 <c>RPSTIR2</c><c>?</c><c>?</c><c>?</c>
@@ -410,7 +367,6 @@ request that RP implementors provide the following information:
 <back>
 <references title="Normative References">
 <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
-<?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5781.xml"?>
 <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6480.xml"?>
 <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6481.xml"?>
 <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6486.xml"?>

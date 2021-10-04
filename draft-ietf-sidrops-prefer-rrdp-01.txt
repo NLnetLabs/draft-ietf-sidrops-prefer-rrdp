@@ -6,9 +6,9 @@ Network Working Group                                     T. Bruijnzeels
 Internet-Draft                                                NLnet Labs
 Updates: 6841, 8182 (if approved)                                R. Bush
 Intended status: Standards TrackInternet Initiative Japan & Arrcus, Inc.
-Expires: March 31, 2022                                    G. Michaelson
+Expires: April 7, 2022                                     G. Michaelson
                                                                    APNIC
-                                                      September 27, 2021
+                                                         October 4, 2021
 
 
    Resource Public Key Infrastructure (RPKI) Repository Requirements
@@ -29,10 +29,10 @@ Abstract
    Repositories, in addition to rsync.  This phase can start as soon as
    this document is published.
 
-   Once the proposed updates are implemented by all Repositories phase 2
-   will start.  In this phase RRDP will become mandatory to implement
-   for all RP software, and rsync will be required as a fallback option
-   only.
+   Phase 2 will start once the proposed updates are implemented by all
+   compliant Repositories.  In this phase RRDP will become mandatory to
+   implement for all compliant RP software, and rsync will be required
+   as a fallback option only.
 
    It should be noted that although this document currently includes
    descriptions and updates to RFCs for each of these phases, we may
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Bruijnzeels, et al.      Expires March 31, 2022                 [Page 1]
+Bruijnzeels, et al.       Expires April 7, 2022                 [Page 1]
 
-Internet-Draft        RPKI Repository Requirements        September 2021
+Internet-Draft        RPKI Repository Requirements          October 2021
 
 
    Internet-Drafts are draft documents valid for a maximum of six months
@@ -63,7 +63,7 @@ Internet-Draft        RPKI Repository Requirements        September 2021
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 31, 2022.
+   This Internet-Draft will expire on April 7, 2022.
 
 Copyright Notice
 
@@ -90,28 +90,28 @@ Table of Contents
        3.1.1.  Updates to RFC 8182 . . . . . . . . . . . . . . . . .   4
        3.1.2.  Updates to RFC 6481 . . . . . . . . . . . . . . . . .   5
      3.2.  Phase 1 - RPKI repositories support both rsync and RRDP .   5
-       3.2.1.  Updates to RFC 6481 . . . . . . . . . . . . . . . . .   6
-       3.2.2.  Measurements  . . . . . . . . . . . . . . . . . . . .   6
+       3.2.1.  Updates to RFC 6481 . . . . . . . . . . . . . . . . .   5
+       3.2.2.  Measurements  . . . . . . . . . . . . . . . . . . . .   5
      3.3.  Phase 2 - All RP software prefers RRDP  . . . . . . . . .   6
-       3.3.1.  Updates to RFC 8182 . . . . . . . . . . . . . . . . .   7
-       3.3.2.  Measurements  . . . . . . . . . . . . . . . . . . . .   7
-   4.  Appendix - Implementation Status  . . . . . . . . . . . . . .   7
+       3.3.1.  Updates to RFC 8182 . . . . . . . . . . . . . . . . .   6
+       3.3.2.  Measurements  . . . . . . . . . . . . . . . . . . . .   6
+   4.  Appendix - Implementation Status  . . . . . . . . . . . . . .   6
      4.1.  Current RRDP Support in Repository Software . . . . . . .   7
-     4.2.  Current RRDP Support in Relying Party software  . . . . .   8
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   9
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . .   9
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
+     4.2.  Current RRDP Support in Relying Party software  . . . . .   7
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   8
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .   8
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
 
 
 
 
 
 
-Bruijnzeels, et al.      Expires March 31, 2022                 [Page 2]
+Bruijnzeels, et al.       Expires April 7, 2022                 [Page 2]
 
-Internet-Draft        RPKI Repository Requirements        September 2021
+Internet-Draft        RPKI Repository Requirements          October 2021
 
 
 1.  Requirements notation
@@ -140,18 +140,16 @@ Internet-Draft        RPKI Repository Requirements        September 2021
    o  rsync library support is lacking, complicating RP efficiency and
       error logging
 
-   o  we cannot ensure that RPs get atomic sets of updated objects
-
    RRDP was designed to leverage HTTPS CDN infrastructure to provide
    RPKI Repository content in a resilient way, while reducing the load
-   on the Repository server.  It supports that updates are published as
+   on the Repository server.  It supports updates being published as
    atomic deltas, which can help prevent most of the issues described in
    section 6 of [RFC6486].
 
    For a longer discussion please see section 1 of [RFC8182].
 
    In conclusion: we believe that while RRDP is not perfect, and we may
-   indeed need future work to improve on it, it is an improvement over
+   indeed need future work to improve it, it is an improvement over
    using rsync in the context of RPKI.  Therefore, this document
    outlines a transition plan where RRDP becomes mandatory to implement,
    and the operational dependency on rsync is reduced to that of a
@@ -161,17 +159,16 @@ Internet-Draft        RPKI Repository Requirements        September 2021
 
    Changing the RPKI infrastructure to rely on RRDP instead of rsync is
    a delicate operation.  There is current deployment of Certification
-
-
-
-
-Bruijnzeels, et al.      Expires March 31, 2022                 [Page 3]
-
-Internet-Draft        RPKI Repository Requirements        September 2021
-
-
    Authorities, Repository Servers and Relying Party software which
    relies on rsync, and which may not yet support RRDP.
+
+
+
+
+Bruijnzeels, et al.       Expires April 7, 2022                 [Page 3]
+
+Internet-Draft        RPKI Repository Requirements          October 2021
+
 
    Therefore we need to have a plan that ultimately updates the relevant
    RFCs, but which uses a phased approach combined with measurements to
@@ -191,81 +188,65 @@ Internet-Draft        RPKI Repository Requirements        September 2021
 3.1.  Phase 0 - RPKI repositories support rsync, and optionally RRDP
 
    This is the situation at the time of writing this document.  Relying
-   Parties can prefer RRDP over rsync today, but they need to support
-   rsync until all RPKI repositories support RRDP.  Therefore all
-   repositories should support RRDP at their earliest convenience.
+   Parties can prefer RRDP over rsync today.  Therefore all repositories
+   should support RRDP at their earliest convenience.
 
 3.1.1.  Updates to RFC 8182
 
-   Repositories which support RRDP MUST ensure that RRDP resources are
-   available to Relying Parties (section 3.3 of [RFC8182]).
-   Furthermore, the RRDP repository MUST include all current repository
-   objects.  Because of this the choice of falling back to alternative
-   repository access mechanisms was left as a local policy choice of RP
-   software.
+   Section 3.4.5 of [RFC8182] has the following on "Considerations
+   Regarding Operational Failures in RRDP":
 
+   Relying Parties could attempt to use alternative repository access
+   mechanisms, if they are available, according to the accessMethod
+   element value(s) specified in the SIA of the associated certificate
+   (see Section 4.8.8 of [RFC6487]).
+
+   The use of the lower case 'could' in this sentence has led some older
+   versions of RP implementations to conclude that any fallback from
+   RRDP to rsync as an alternative access mechanism is a local choice.
    However, following discussions on this subject it has become clear
    that there is a preference to instruct RP software to make use of all
    possible data sources.  The main motivation being that because of
    RPKI object security using a secondary source of data can never lead
    to a worse outcome in terms of validation.
 
-   The following update is therefore applicable to section 3.4.5
-   "Considerations Regarding Operational Failures in RRDP" of [RFC8182]:
+   Per this document text mentioned above is replaced by the following:
 
-   OLD: Relying Parties could attempt to use alternative repository
-   access mechanisms, if they are available, according to the
-   accessMethod element value(s) specified in the SIA of the associated
-   certificate (see Section 4.8.8 of [RFC6487]).
-
+   Relying Parties MUST attempt to use alternative repository access
+   mechanisms, if they are available, according to the accessMethod
+   element value(s) specified in the SIA of the associated certificate
+   (see Section 4.8.8 of [RFC6487]).
 
 
 
-Bruijnzeels, et al.      Expires March 31, 2022                 [Page 4]
+
+
+Bruijnzeels, et al.       Expires April 7, 2022                 [Page 4]
 
-Internet-Draft        RPKI Repository Requirements        September 2021
+Internet-Draft        RPKI Repository Requirements          October 2021
 
 
-   NEW: Relying Parties MUST attempt to use alternative repository
-   access mechanisms, if they are available, according to the
-   accessMethod element value(s) specified in the SIA of the associated
-   certificate (see Section 4.8.8 of [RFC6487]).
+   Note that there is a risk that the rsync repository, as the
+   alternative access mechanism, becomes overloaded in case all Relying
+   Parties fall back to it at roughly the same time due to an issue with
+   RRDP.  Therefore it is RECOMMENDED that Relying Parties use a retry
+   strategy and/or random jitter time before falling back to rsync.
+   But, the fallback to rsync MUST NOT be postponed for more than 1
+   hour.
 
 3.1.2.  Updates to RFC 6481
 
-   As noted above section 3.3 of [RFC8182] already stipulates that RRDP
-   files MUST be made available by repositories which support RRDP.  In
-   other words the RRDP service must be treated as a critical service
-   wherever it is supported.
+   Section 3.3 of [RFC8182] stipulates that RRDP files MUST be made
+   available by repositories which support RRDP.  In other words
+   [RFC8182] expects that RRDP repository availability is treated as a
+   critical service wherever it is supported.
 
-   During this phase the updates are applied to section 3 of [RFC6481],
-   to make this abundantly clear:
-
-   OLD:
-
-   o  The publication repository SHOULD be hosted on a highly available
-      service and high-capacity publication platform.
-
-   o  The publication repository MUST be available using rsync [RFC5781]
-      [RSYNC].  Support of additional retrieval mechanisms is the choice
-      of the repository operator.  The supported retrieval mechanisms
-      MUST be consistent with the accessMethod element value(s)
-      specified in the SIA of the associated CA or EE certificate.
-
-   NEW:
+   Per this document the following bullet point is added to the
+   considerations listed in in section 3 of [RFC6481]:
 
    o  The publication repository MAY be available using the RPKI
       Repository Delta Protocol [RFC8182].  If RPDP is provided, it
       SHOULD be hosted on a highly available platform.
-
-   o  The publication repository MUST be available using rsync [RFC5781]
-      [RSYNC].  The rsync server SHOULD be hosted on a highly available
-      platform.
-
-   o  Support of additional retrieval mechanisms is the choice of the
-      repository operator.  The supported retrieval mechanisms MUST be
-      consistent with the accessMethod element value(s) specified in the
-      SIA of the associated CA or EE certificate.
 
 3.2.  Phase 1 - RPKI repositories support both rsync and RRDP
 
@@ -274,43 +255,15 @@ Internet-Draft        RPKI Repository Requirements        September 2021
    Servers have been upgraded to do so, in as far as they don't support
    RRDP already.
 
-
-
-
-Bruijnzeels, et al.      Expires March 31, 2022                 [Page 5]
-
-Internet-Draft        RPKI Repository Requirements        September 2021
-
-
 3.2.1.  Updates to RFC 6481
 
-   During this phase the updates are applied to section 3 of [RFC6481].
-
-   OLD:
-
-   o  The publication repository SHOULD be hosted on a highly available
-      service and high-capacity publication platform.
-
-   o  The publication repository MUST be available using rsync [RFC5781]
-      [RSYNC].  Support of additional retrieval mechanisms is the choice
-      of the repository operator.  The supported retrieval mechanisms
-      MUST be consistent with the accessMethod element value(s)
-      specified in the SIA of the associated CA or EE certificate.
-
-   NEW:
+   In this phase the bullet point update to section 3 of [RFC6481]
+   mentioned above, where it was said the publication repository MAY be
+   available using the RPKI Repository Delta Protocol is replaced by:
 
    o  The publication repository MUST be available using the RPKI
       Repository Delta Protocol [RFC8182].  The RRDP server SHOULD be
       hosted on a highly available platform.
-
-   o  The publication repository MUST be available using rsync [RFC5781]
-      [RSYNC].  The rsync server SHOULD be hosted on a highly available
-      platform.
-
-   o  Support of additional retrieval mechanisms is the choice of the
-      repository operator.  The supported retrieval mechanisms MUST be
-      consistent with the accessMethod element value(s) specified in the
-      SIA of the associated CA or EE certificate.
 
 3.2.2.  Measurements
 
@@ -320,6 +273,15 @@ Internet-Draft        RPKI Repository Requirements        September 2021
    When it is found that Repositories do not yet support RRDP, outreach
    should be done to them individually.  Since the number of
    Repositories is fairly low, and it is in their interest to run RRDP
+
+
+
+
+Bruijnzeels, et al.       Expires April 7, 2022                 [Page 5]
+
+Internet-Draft        RPKI Repository Requirements          October 2021
+
+
    because it addresses availability concerns, we have confidence that
    we will find these Repositories willing to make changes.
 
@@ -329,28 +291,15 @@ Internet-Draft        RPKI Repository Requirements        September 2021
    mandatory to implement for Relying Party software.  But note that RP
    software is not prohibited from implementing this support sooner.  At
    the time of this writing all known RP software supports RRDP,
-
-
-
-
-Bruijnzeels, et al.      Expires March 31, 2022                 [Page 6]
-
-Internet-Draft        RPKI Repository Requirements        September 2021
-
-
    although it is not known to the authors whether all of them have RRDP
    enabled and use it as the preferred protocol.
 
 3.3.1.  Updates to RFC 8182
 
-   From this phase onwards the updates are applied to section 3.4.1 of
-   [RFC8182].
+   From this phase onwards the first paragraph of section 3.4.1 of
+   [RFC8182] is replaced by the following:
 
-   OLD: When a Relying Party performs RPKI validation and learns about a
-   valid certificate with an SIA entry for the RRDP protocol, it SHOULD
-   use this protocol as follows.
-
-   NEW: When a Relying Party performs RPKI validation and learns about a
+   When a Relying Party performs RPKI validation and learns about a
    valid certificate with an SIA entry for the RRDP protocol, it MUST
    use this protocol with preference.
 
@@ -360,7 +309,7 @@ Internet-Draft        RPKI Repository Requirements        September 2021
 
    However, as stipulated in section 3.4.5, Relying Parties MUST attempt
    to use alternative repository access mechanisms, if object retrieval
-   through this protocol is unsuccessful.
+   through RRDP is unsuccessful.
 
 3.3.2.  Measurements
 
@@ -379,20 +328,19 @@ Internet-Draft        RPKI Repository Requirements        September 2021
    discussion phase of this document and is not intended to be included
    in an RFC.
 
+
+
+
+
+
+Bruijnzeels, et al.       Expires April 7, 2022                 [Page 6]
+
+Internet-Draft        RPKI Repository Requirements          October 2021
+
+
 4.1.  Current RRDP Support in Repository Software
 
    The currently known support for RRDP for repositories is as follows:
-
-
-
-
-
-
-
-Bruijnzeels, et al.      Expires March 31, 2022                 [Page 7]
-
-Internet-Draft        RPKI Repository Requirements        September 2021
-
 
              +---------------------------+------------------+
              | Repository Implementation | Support for RRDP |
@@ -417,9 +365,9 @@ Internet-Draft        RPKI Repository Requirements        September 2021
       +------------------------------+---------+---------+---------+
       | Relying Party Implementation | support | version |  since  |
       +------------------------------+---------+---------+---------+
+      |             DRL              |   yes   |    ?    |    ?    |
       |             FORT             |   yes   |  1.2.0  | 02/2021 |
       |           OctoRPKI           |   yes   |  1.0.0  | 02/2019 |
-      |            rcynic            |   yes   |    ?    |    ?    |
       |          Routinator          |   yes   |  0.6.0  | 09/2019 |
       |         rpki-client          |   yes   |  0.7.0  | 04/2021 |
       |           RPSTIR2            |   yes   |   2.0   | 04/2020 |
@@ -429,26 +377,33 @@ Internet-Draft        RPKI Repository Requirements        September 2021
    enabled and preferred over rsync by default.  The authors kindly
    request that RP implementors provide the following information:
 
+
+
+
+
+
+
+
+
+
+
+
+
+Bruijnzeels, et al.       Expires April 7, 2022                 [Page 7]
+
+Internet-Draft        RPKI Repository Requirements          October 2021
+
+
        +------------------------------+--------+---------+---------+
        | Relying Party Implementation | prefer | version |  since  |
        +------------------------------+--------+---------+---------+
+       |             DRL              |   ?    |    ?    |    ?    |
        |             FORT             |  yes   |    ?    |    ?    |
        |           OctoRPKI           |   ?    |    ?    |    ?    |
-       |            rcynic            |   ?    |    ?    |    ?    |
        |          Routinator          |  yes   |  0.6.0  | 09/2019 |
        |         rpki-client          |   ?    |    ?    |    ?    |
        |           RPSTIR2            |   ?    |    ?    |    ?    |
        +------------------------------+--------+---------+---------+
-
-
-
-
-
-
-Bruijnzeels, et al.      Expires March 31, 2022                 [Page 8]
-
-Internet-Draft        RPKI Repository Requirements        September 2021
-
 
 5.  IANA Considerations
 
@@ -469,10 +424,6 @@ Internet-Draft        RPKI Repository Requirements        September 2021
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC5781]  Weiler, S., Ward, D., and R. Housley, "The rsync URI
-              Scheme", RFC 5781, DOI 10.17487/RFC5781, February 2010,
-              <https://www.rfc-editor.org/info/rfc5781>.
-
    [RFC6480]  Lepinski, M. and S. Kent, "An Infrastructure to Support
               Secure Internet Routing", RFC 6480, DOI 10.17487/RFC6480,
               February 2012, <https://www.rfc-editor.org/info/rfc6480>.
@@ -491,20 +442,18 @@ Internet-Draft        RPKI Repository Requirements        September 2021
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
+
+
+
+Bruijnzeels, et al.       Expires April 7, 2022                 [Page 8]
+
+Internet-Draft        RPKI Repository Requirements          October 2021
+
+
    [RFC8182]  Bruijnzeels, T., Muravskiy, O., Weber, B., and R. Austein,
               "The RPKI Repository Delta Protocol (RRDP)", RFC 8182,
               DOI 10.17487/RFC8182, July 2017,
               <https://www.rfc-editor.org/info/rfc8182>.
-
-
-
-
-
-
-Bruijnzeels, et al.      Expires March 31, 2022                 [Page 9]
-
-Internet-Draft        RPKI Repository Requirements        September 2021
-
 
 Authors' Addresses
 
@@ -552,9 +501,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-Bruijnzeels, et al.      Expires March 31, 2022                [Page 10]
+Bruijnzeels, et al.       Expires April 7, 2022                 [Page 9]
