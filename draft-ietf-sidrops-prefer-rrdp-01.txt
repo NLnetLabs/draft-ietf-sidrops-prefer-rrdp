@@ -6,9 +6,9 @@ Network Working Group                                     T. Bruijnzeels
 Internet-Draft                                                NLnet Labs
 Updates: 6841, 8182 (if approved)                                R. Bush
 Intended status: Standards TrackInternet Initiative Japan & Arrcus, Inc.
-Expires: April 7, 2022                                     G. Michaelson
+Expires: April 25, 2022                                    G. Michaelson
                                                                    APNIC
-                                                         October 4, 2021
+                                                        October 22, 2021
 
 
    Resource Public Key Infrastructure (RPKI) Repository Requirements
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Bruijnzeels, et al.       Expires April 7, 2022                 [Page 1]
+Bruijnzeels, et al.      Expires April 25, 2022                 [Page 1]
 
 Internet-Draft        RPKI Repository Requirements          October 2021
 
@@ -63,7 +63,7 @@ Internet-Draft        RPKI Repository Requirements          October 2021
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 7, 2022.
+   This Internet-Draft will expire on April 25, 2022.
 
 Copyright Notice
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Bruijnzeels, et al.       Expires April 7, 2022                 [Page 2]
+Bruijnzeels, et al.      Expires April 25, 2022                 [Page 2]
 
 Internet-Draft        RPKI Repository Requirements          October 2021
 
@@ -165,7 +165,7 @@ Internet-Draft        RPKI Repository Requirements          October 2021
 
 
 
-Bruijnzeels, et al.       Expires April 7, 2022                 [Page 3]
+Bruijnzeels, et al.      Expires April 25, 2022                 [Page 3]
 
 Internet-Draft        RPKI Repository Requirements          October 2021
 
@@ -221,7 +221,7 @@ Internet-Draft        RPKI Repository Requirements          October 2021
 
 
 
-Bruijnzeels, et al.       Expires April 7, 2022                 [Page 4]
+Bruijnzeels, et al.      Expires April 25, 2022                 [Page 4]
 
 Internet-Draft        RPKI Repository Requirements          October 2021
 
@@ -277,7 +277,7 @@ Internet-Draft        RPKI Repository Requirements          October 2021
 
 
 
-Bruijnzeels, et al.       Expires April 7, 2022                 [Page 5]
+Bruijnzeels, et al.      Expires April 25, 2022                 [Page 5]
 
 Internet-Draft        RPKI Repository Requirements          October 2021
 
@@ -333,7 +333,7 @@ Internet-Draft        RPKI Repository Requirements          October 2021
 
 
 
-Bruijnzeels, et al.       Expires April 7, 2022                 [Page 6]
+Bruijnzeels, et al.      Expires April 25, 2022                 [Page 6]
 
 Internet-Draft        RPKI Repository Requirements          October 2021
 
@@ -389,7 +389,7 @@ Internet-Draft        RPKI Repository Requirements          October 2021
 
 
 
-Bruijnzeels, et al.       Expires April 7, 2022                 [Page 7]
+Bruijnzeels, et al.      Expires April 25, 2022                 [Page 7]
 
 Internet-Draft        RPKI Repository Requirements          October 2021
 
@@ -445,7 +445,7 @@ Internet-Draft        RPKI Repository Requirements          October 2021
 
 
 
-Bruijnzeels, et al.       Expires April 7, 2022                 [Page 8]
+Bruijnzeels, et al.      Expires April 25, 2022                 [Page 8]
 
 Internet-Draft        RPKI Repository Requirements          October 2021
 
@@ -501,4 +501,4 @@ Authors' Addresses
 
 
 
-Bruijnzeels, et al.       Expires April 7, 2022                 [Page 9]
+Bruijnzeels, et al.      Expires April 25, 2022                 [Page 9]
